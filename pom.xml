@@ -17,8 +17,8 @@
                 <configuration>
                     <nodeVersion>v8.11.3</nodeVersion>
                     <npmVersion>6.3.0</npmVersion>
-                    <workingDirectory>web</workingDirectory>
-                    <installDirectory>web</installDirectory>
+                    <workingDirectory>src/main/web</workingDirectory>
+                    <installDirectory>src/main/web</installDirectory>
                 </configuration>
                 <executions>
                     <execution>
