@@ -17,6 +17,6 @@
 .project
 .settings/
 target/
-src/main/web/node/
-src/main/web/node_modules/
-src/main/web/built
+src/main/webapp/node/
+src/main/webapp/node_modules/
+src/main/webapp/built

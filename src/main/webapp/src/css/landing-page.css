@@ -1,0 +1,44 @@
+.btn-light-forlend {
+    color: #ffffff;
+    background-color: rgba(24, 25, 25, 0.57);
+    border-color: #f8f9fa;
+}
+
+.btn-light-forlend:hover {
+    color: black;
+    background-color: rgba(243, 245, 236, 0.91);
+    border-color: #dae0e5;
+}
+
+.section{
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: linear-gradient(to bottom, rgba(34, 28, 23, 0.8) 0%, rgba(192, 188, 191, 0.8) 100%) no-repeat scroll center;
+    background-size: cover;
+}
+
+
+
+.train-icon{
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+}
+
+#mainNav .train-icon{
+    background-image: url("../img/train-icon-white.png");
+}
+
+#mainNav.navbar-scrolled .train-icon{
+    background-image: url("../img/train-icon.png");
+}
+
+.carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 
 var path = {
     build: {
-        html: 'built/',
+        html: 'built/templates',
         js: 'built/js/',
         css: 'built/css/',
         img: 'built/img/',
@@ -24,16 +24,16 @@ var path = {
     },
     src: {
         html: 'src/templates/**/*.*',
-        js: 'src/js/main.js',
-        style: 'src/style/main.scss',
+        js: 'src/js/**/*.js',
+        style: 'src/css/*.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
     watch: {
         html: 'src/templates/**/*.*',
         js: 'src/js/**/*.js',
-        style: 'src/style/**/*.scss',
-        img: 'src/images/**/*.*',
+        style: 'src/css/**/*.css',
+        img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
     clean: './build'
@@ -75,7 +75,7 @@ gulp.task('style:build', function () {
         .pipe(prefixer())
         .pipe(cssmin())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.css)) //И в build
+        .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 });
 
@@ -99,7 +99,9 @@ gulp.task('fonts:build', function () {
 gulp.task('build', [
     'html:build',
     'js:build',
-    'style:build'
+    'style:build',
+    'image:build',
+    'fonts:build'
 ]);
 
 gulp.task('watch', function () {
@@ -128,4 +130,4 @@ gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
 });
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+gulp.task('default', ['build', 'watch']);
