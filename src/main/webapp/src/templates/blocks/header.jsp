@@ -16,10 +16,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#">Log in</a>
+                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal" data-target="#ModalLogin">Log in</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#">Sign in</a>
+                    <a class="nav-link js-scroll-trigger"  style="cursor: pointer" data-toggle="modal" data-target="#ModalRegistration">Sign in</a>
                 </li>
             </ul>
         </div>

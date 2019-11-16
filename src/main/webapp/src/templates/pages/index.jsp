@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="built/css/landing-page.css">
 </head>
 <body id="page-top">
-<%@ include file="blocks/header.jsp" %>
+<%@ include file="../blocks/header.jsp" %>
 <header>
 
     <%--carousel--%>
@@ -88,18 +88,99 @@
     </section>
 
     <!-- third-slide-info -->
-        <section class="page-section " id="third-slide-info">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">Third slide title!</h2>
-                        <hr class="divider light my-4">
-                        <p class="text-white-50 mb-4">Third slide info!</p>
-                    </div>
+    <section class="page-section " id="third-slide-info">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="text-white mt-0">Third slide title!</h2>
+                    <hr class="divider light my-4">
+                    <p class="text-white-50 mb-4">Third slide info!</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 </header>
+
+<!-- Modal registration-->
+<div class="modal fade" id="ModalRegistration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+        <div class="card card-signin flex-row my-5 modal-content">
+            <div class="card-body">
+                <h5 class="card-title text-center">Register</h5>
+                <form class="form-signin">
+                    <div class="form-label-group">
+                        <input type="text" id="inputUserame" class="form-control" placeholder="Username"
+                               required autofocus>
+                        <label for="inputUserame">Username</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                               required>
+                        <label for="inputEmail">Email address</label>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-label-group">
+                        <input type="password" id="inputPassword" class="form-control"
+                               placeholder="Password" required>
+                        <label for="inputPassword">Password</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" id="inputConfirmPassword" class="form-control"
+                               placeholder="Password" required>
+                        <label for="inputConfirmPassword">Confirm password</label>
+                    </div>
+
+                    <button class="btn btn-lg  btn-primary btn-block text-uppercase" type="submit">Register
+                    </button>
+                    <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal" data-target="#ModalLogin"
+                       data-dismiss="modal" aria-label="Close">Sign In</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal login-->
+<div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+        <div class="card card-signin flex-row my-5 modal-content">
+            <div class="card-body">
+                <h5 class="card-title text-center">Sign In</h5>
+                <form class="form-signin">
+                    <div class="form-label-group">
+                        <input type="email" id="inputEmailLogin" class="form-control" placeholder="Email address" required autofocus>
+                        <label for="inputEmailLogin">Email address</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" id="inputPasswordLogin" class="form-control" placeholder="Password" required>
+                        <label for="inputPasswordLogin">Password</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Remember password</label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                    <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal" data-target="#ModalRegistration"
+                        data-dismiss="modal" aria-label="Close">
+                        Registration</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/popper.js/dist/popper.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
