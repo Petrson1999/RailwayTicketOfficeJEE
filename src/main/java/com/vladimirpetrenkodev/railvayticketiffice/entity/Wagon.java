@@ -3,15 +3,25 @@ package com.vladimirpetrenkodev.railvayticketiffice.entity;
 
 import inerfaces.Identified;
 
-public class Wagon extends CompoundTrains  implements Identified<Integer> {
+public class Wagon extends CompoundTrains implements Identified<Integer> {
+
+    public Wagon() {
+    }
+
+    public Wagon(int id, int trainId, int wagonTypeId, String name) {
+        this.id = id;
+        this.setTrainId(trainId);
+        this.wagonTypeId = wagonTypeId;
+        this.name = name;
+    }
 
     private int id;
 
-    private int wogonTypeId;
+    private int wagonTypeId;
 
     private String name;
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -20,12 +30,12 @@ public class Wagon extends CompoundTrains  implements Identified<Integer> {
         return this.id;
     }
 
-    public void setWogonTypeId(int wogonTypeId) {
-        this.wogonTypeId = wogonTypeId;
+    public void setWagonTypeId(int wogonTypeId) {
+        this.wagonTypeId = wogonTypeId;
     }
 
-    public int getWogonTypeId() {
-        return wogonTypeId;
+    public int getWagonTypeId() {
+        return wagonTypeId;
     }
 
     public String getName() {

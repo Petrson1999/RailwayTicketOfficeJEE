@@ -5,6 +5,16 @@ import inerfaces.Identified;
 
 public class WagonType implements Identified<Integer> {
 
+    public WagonType() {
+    }
+
+    public WagonType(int id, int numberOfSeats, int comfort, String name) {
+        this.id = id;
+        this.numberOfSeats = numberOfSeats;
+        this.comfort = comfort;
+        this.name = name;
+    }
+
     private int id;
 
     private int numberOfSeats;

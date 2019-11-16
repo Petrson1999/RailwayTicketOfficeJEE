@@ -4,6 +4,15 @@ import inerfaces.Identified;
 
 public class Seat implements Identified<Integer> {
 
+    public Seat() {
+    }
+
+    public Seat(int id, int wagonId, int placeNumber) {
+        this.id = id;
+        this.wagonId = wagonId;
+        this.placeNumber = placeNumber;
+    }
+
     private int id;
 
     private int wagonId;

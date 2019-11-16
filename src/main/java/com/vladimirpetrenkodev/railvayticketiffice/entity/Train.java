@@ -2,9 +2,15 @@ package com.vladimirpetrenkodev.railvayticketiffice.entity;
 
 import inerfaces.Identified;
 
-import java.util.ArrayList;
-
 public class Train implements Identified<Integer> {
+
+    public Train(){}
+
+    public Train(int id, String name, int locomotiveId){
+        this.id = id;
+        this.name = name;
+        this.locomotiveId = locomotiveId;
+    }
 
     private int id;
 

@@ -1,9 +1,16 @@
 package com.vladimirpetrenkodev.railvayticketiffice.entity;
 
-
 import inerfaces.Identified;
 
 public class Luggage implements Identified<Integer> {
+
+    public Luggage() {
+    }
+
+    public Luggage(int id, int ticketId) {
+        this.id = id;
+        this.ticketId = id;
+    }
 
     private int id;
 

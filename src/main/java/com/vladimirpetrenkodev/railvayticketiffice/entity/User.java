@@ -4,6 +4,18 @@ import inerfaces.Identified;
 
 public class User implements Identified<Integer> {
 
+    public User() {
+    }
+
+    public User(int id, String login, String password, String role, String name, String surname) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.name = name;
+        this.surname = surname;
+    }
+
     private int id;
 
     private String login;

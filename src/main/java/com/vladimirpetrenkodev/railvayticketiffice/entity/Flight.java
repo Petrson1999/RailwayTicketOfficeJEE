@@ -7,11 +7,26 @@ import java.util.Date;
 
 public class Flight implements Identified<Integer> {
 
+    public Flight() {
+    }
+
+    public Flight(int id, int departureStationId, int arrivalStationId, Date departureTime, Date arrivalTime,
+                  double cost, String name, int trainId) {
+        this.id = id;
+        this.departureStationId = departureStationId;
+        this.arrivalStationId = arrivalStationId;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.cost = cost;
+        this.name = name;
+        this.trainId = trainId;
+    }
+
     private int id;
 
-    private Station departureStation;
+    private int departureStationId;
 
-    private Station arrivalStation;
+    private int arrivalStationId;
 
     private Date departureTime;
 
@@ -32,20 +47,20 @@ public class Flight implements Identified<Integer> {
         return this.id;
     }
 
-    public void setDepartureStation(Station departureStation) {
-        this.departureStation = departureStation;
+    public void setDepartureStationID(int departureStationId) {
+        this.departureStationId = departureStationId;
     }
 
-    public Station getDepartureStation() {
-        return departureStation;
+    public int getDepartureStationId() {
+        return departureStationId;
     }
 
-    public void setArrivalStation(Station arrivalStation) {
-        this.arrivalStation = arrivalStation;
+    public void setArrivalStationId(int arrivalStationId) {
+        this.arrivalStationId = arrivalStationId;
     }
 
-    public Station getArrivalStation() {
-        return arrivalStation;
+    public int getArrivalStationId() {
+        return arrivalStationId;
     }
 
     public void setDepartureTime(Date departureTime) {
@@ -84,7 +99,7 @@ public class Flight implements Identified<Integer> {
         this.trainId = trainId;
     }
 
-    public int getTrain() {
+    public int getTrainId() {
         return trainId;
     }
 }

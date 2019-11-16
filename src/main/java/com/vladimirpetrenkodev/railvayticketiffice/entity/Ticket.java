@@ -4,6 +4,17 @@ import inerfaces.Identified;
 
 public class Ticket implements Identified<Integer> {
 
+    public Ticket(){}
+
+    public Ticket(int id, int flightId, int userId, double cost, int seatId, String status){
+        this.id = id;
+        this.flightId = flightId;
+        this.userId = userId;
+        this.cost = cost;
+        this.seatId = seatId;
+        this.status = status;
+    }
+
     private int id;
 
     private int flightId;
@@ -11,6 +22,10 @@ public class Ticket implements Identified<Integer> {
     private int userId;
 
     private double cost;
+
+    private int seatId;
+
+    private String status;
 
     @Override
     public Integer getId() {
@@ -21,20 +36,12 @@ public class Ticket implements Identified<Integer> {
         this.id = id;
     }
 
-    public int getFlight() {
+    public int getFlightId() {
         return flightId;
     }
 
-    public void setFlight(int flightId) {
+    public void setFlightId(int flightId) {
         this.flightId = flightId;
-    }
-
-    public int getUser() {
-        return userId;
-    }
-
-    public void setUser(int userId) {
-        this.userId = userId;
     }
 
     public double getCost() {
@@ -43,5 +50,29 @@ public class Ticket implements Identified<Integer> {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public int getSeatId() {
+        return seatId;
+    }
+
+    public void setSeatIdId(int seatId) {
+        this.seatId = seatId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
