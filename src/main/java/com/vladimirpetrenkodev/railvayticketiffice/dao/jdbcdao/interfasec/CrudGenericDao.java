@@ -1,7 +1,7 @@
 package com.vladimirpetrenkodev.railvayticketiffice.dao.jdbcdao.interfasec;
 
 import com.vladimirpetrenkodev.railvayticketiffice.exeptions.PersistException;
-import inerfaces.Identified;
+import com.vladimirpetrenkodev.railvayticketiffice.entity.Identified;
 
 import java.io.Serializable;
 import java.util.List;

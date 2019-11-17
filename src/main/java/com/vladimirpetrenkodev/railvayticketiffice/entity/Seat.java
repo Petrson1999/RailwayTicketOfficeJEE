@@ -1,7 +1,5 @@
 package com.vladimirpetrenkodev.railvayticketiffice.entity;
 
-import inerfaces.Identified;
-
 public class Seat implements Identified<Integer> {
 
     public Seat() {

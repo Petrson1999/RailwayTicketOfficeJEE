@@ -4,7 +4,7 @@ import com.vladimirpetrenkodev.railvayticketiffice.dao.jdbcdao.interfasec.CrudGe
 import com.vladimirpetrenkodev.railvayticketiffice.dao.jdbcdao.interfasec.EntityMapper;
 import com.vladimirpetrenkodev.railvayticketiffice.exeptions.PersistException;
 import com.vladimirpetrenkodev.railvayticketiffice.persistance.DataSourceFactory;
-import inerfaces.Identified;
+import com.vladimirpetrenkodev.railvayticketiffice.entity.Identified;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;

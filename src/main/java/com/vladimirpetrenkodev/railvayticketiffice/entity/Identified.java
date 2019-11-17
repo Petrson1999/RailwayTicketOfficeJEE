@@ -1,4 +1,4 @@
-package inerfaces;
+package com.vladimirpetrenkodev.railvayticketiffice.entity;
 
 import java.io.Serializable;
 

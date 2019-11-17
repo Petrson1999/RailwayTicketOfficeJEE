@@ -1,8 +1,6 @@
 package com.vladimirpetrenkodev.railvayticketiffice.entity;
 
 
-import inerfaces.Identified;
-
 import java.util.Date;
 
 public class Flight implements Identified<Integer> {
