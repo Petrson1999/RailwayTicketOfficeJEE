@@ -1,7 +1,9 @@
 <!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="${bundle}"/>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -16,7 +18,6 @@
 <body id="page-top">
 <%@ include file="../blocks/header.jsp" %>
 <header>
-
     <%--carousel--%>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -30,7 +31,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4"><fmt:message key="slider.first-slide.title"/><br></h2>
                     <p class="lead"><fmt:message key="slider.first-slide.description"/></p>
-                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#first-slide-info"><fmt:message key="slider.button.read-more"/></a>
+                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#first-slide-info"><fmt:message
+                            key="slider.button.read-more"/></a>
                 </div>
             </div>
             <div class="carousel-item"
@@ -38,7 +40,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4"><fmt:message key="slider.second-slide.title"/><br></h2>
                     <p class="lead"><fmt:message key="slider.second-slide.description"/></p>
-                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#second-slide-info"><fmt:message key="slider.button.read-more"/></a>
+                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#second-slide-info"><fmt:message
+                            key="slider.button.read-more"/></a>
                 </div>
             </div>
             <div class="carousel-item"
@@ -46,7 +49,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4"><fmt:message key="slider.third-slide.title"/><br></h2>
                     <p class="lead"><fmt:message key="slider.third-slide.description"/></p>
-                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#third-slide-info"><fmt:message key="slider.button.read-more"/></a>
+                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#third-slide-info"><fmt:message
+                            key="slider.button.read-more"/></a>
                 </div>
             </div>
         </div>
@@ -67,7 +71,7 @@
                 <div class="col-lg-8 text-center">
                     <h2 class="text-white mt-0"><fmt:message key="slider.first-slide.title"/></h2>
                     <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4"><fmt:message key="slider.first-slide.title"/></p>
+                    <p class="text-white-50 mb-4"><fmt:message key="slider.first-slide.info"/></p>
                 </div>
             </div>
         </div>
@@ -80,7 +84,7 @@
                 <div class="col-lg-8 text-center">
                     <h2 class="text-white mt-0"><fmt:message key="slider.second-slide.title"/></h2>
                     <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4"><fmt:message key="slider.second-slide.title"/></p>
+                    <p class="text-white-50 mb-4"><fmt:message key="slider.second-slide.info"/></p>
                 </div>
             </div>
         </div>
@@ -93,7 +97,7 @@
                 <div class="col-lg-8 text-center">
                     <h2 class="text-white mt-0"><fmt:message key="slider.third-slide.title"/></h2>
                     <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4"><fmt:message key="slider.third-slide.title"/></p>
+                    <p class="text-white-50 mb-4"><fmt:message key="slider.third-slide.info"/></p>
                 </div>
             </div>
         </div>
@@ -107,38 +111,39 @@
 
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
-                <h5 class="card-title text-center">Register</h5>
+                <h5 class="card-title text-center"><fmt:message key="modal-registration-title"/></h5>
                 <form class="form-signin">
                     <div class="form-label-group">
-                        <input type="text" id="inputUserame" class="form-control" placeholder="Username"
+                        <input type="text" id="inputUserame" class="form-control" placeholder="<fmt:message key="modal-registration-username"/>"
                                required autofocus>
-                        <label for="inputUserame">Username</label>
+                        <label for="inputUserame"><fmt:message key="modal-registration-username"/></label>
                     </div>
 
                     <div class="form-label-group">
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                        <input type="email" id="inputEmail" class="form-control" placeholder="<fmt:message key="modal-email"/>"
                                required>
-                        <label for="inputEmail">Email address</label>
+                        <label for="inputEmail"><fmt:message key="modal-email"/></label>
                     </div>
 
                     <hr>
 
                     <div class="form-label-group">
                         <input type="password" id="inputPassword" class="form-control"
-                               placeholder="Password" required>
-                        <label for="inputPassword">Password</label>
+                               placeholder="<fmt:message key="modal-password"/>" required>
+                        <label for="inputPassword"><fmt:message key="modal-password"/></label>
                     </div>
 
                     <div class="form-label-group">
                         <input type="password" id="inputConfirmPassword" class="form-control"
-                               placeholder="Password" required>
-                        <label for="inputConfirmPassword">Confirm password</label>
+                               placeholder="<fmt:message key="modal-registration-confirm-password"/>">
+                        <label for="inputConfirmPassword"><fmt:message key="modal-registration-confirm-password"/></label>
                     </div>
 
-                    <button class="btn btn-lg  btn-primary btn-block text-uppercase" type="submit">Register
+                    <button class="btn btn-lg  btn-primary btn-block text-uppercase" type="submit"><fmt:message key="modal-registration-title-upper"/>
                     </button>
-                    <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal" data-target="#ModalLogin"
-                       data-dismiss="modal" aria-label="Close">Sign In</a>
+                    <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal"
+                       data-target="#ModalLogin"
+                       data-dismiss="modal" aria-label="Close"><fmt:message key="modal-login-title"/></a>
                 </form>
 
             </div>
@@ -153,26 +158,29 @@
 
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
-                <h5 class="card-title text-center">Sign In</h5>
+                <h5 class="card-title text-center"><fmt:message key="modal-login-title"/></h5>
                 <form class="form-signin">
                     <div class="form-label-group">
-                        <input type="email" id="inputEmailLogin" class="form-control" placeholder="Email address" required autofocus>
-                        <label for="inputEmailLogin">Email address</label>
+                        <input type="email" id="inputEmailLogin" class="form-control" placeholder="<fmt:message key="modal-email"/>"
+                               required autofocus>
+                        <label for="inputEmailLogin"><fmt:message key="modal-email"/></label>
                     </div>
 
                     <div class="form-label-group">
-                        <input type="password" id="inputPasswordLogin" class="form-control" placeholder="Password" required>
-                        <label for="inputPasswordLogin">Password</label>
+                        <input type="password" id="inputPasswordLogin" class="form-control" placeholder="<fmt:message key="modal-password"/>"
+                               required>
+                        <label for="inputPasswordLogin"><fmt:message key="modal-password"/></label>
                     </div>
 
                     <div class="custom-control custom-checkbox mb-3">
                         <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Remember password</label>
+                        <label class="custom-control-label" for="customCheck1"><fmt:message key="modal-login-remember-password"/></label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                    <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal" data-target="#ModalRegistration"
-                        data-dismiss="modal" aria-label="Close">
-                        Registration</a>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><fmt:message key="modal-login-title-upper"/></button>
+                    <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal"
+                       data-target="#ModalRegistration"
+                       data-dismiss="modal" aria-label="Close">
+                        <fmt:message key="modal-registration-title"/></a>
                 </form>
             </div>
 
