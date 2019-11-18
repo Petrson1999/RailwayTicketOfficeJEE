@@ -1,6 +1,7 @@
 <!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -27,27 +28,25 @@
             <div class="carousel-item active"
                  style="background-image: url('http://www.citymetric.com/sites/default/files/article_body_2017/06/screen_shot_2017-06-21_at_18.02.44.png')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="display-4">First Slide</h2>
-                    <p class="lead">This is a description for the first
-                        slide.This is a description for the first slide.This
-                        is a description for the first slide.</p>
-                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#first-slide-info">Read more!</a>
+                    <h2 class="display-4"><fmt:message key="slider.first-slide.title"/><br></h2>
+                    <p class="lead"><fmt:message key="slider.first-slide.description"/></p>
+                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#first-slide-info"><fmt:message key="slider.button.read-more"/></a>
                 </div>
             </div>
             <div class="carousel-item"
                  style="background-image: url('https://s2.best-wallpaper.net/wallpaper/2560x1440/1807/France-Limoges-city-night-train-station_2560x1440.jpg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="display-4">Second Slide</h2>
-                    <p class="lead">This is a description for the second slide.</p>
-                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#second-slide-info">Read more!</a>
+                    <h2 class="display-4"><fmt:message key="slider.second-slide.title"/><br></h2>
+                    <p class="lead"><fmt:message key="slider.second-slide.description"/></p>
+                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#second-slide-info"><fmt:message key="slider.button.read-more"/></a>
                 </div>
             </div>
             <div class="carousel-item"
                  style="background-image: url('http://wp.widewallpapers.ru/2k/cities/tokyo/1920x1080/Tokyo-1920x1080-095.jpg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="display-4">Third Slide</h2>
-                    <p class="lead">This is a description for the third slide.</p>
-                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#third-slide-info">Read more!</a>
+                    <h2 class="display-4"><fmt:message key="slider.third-slide.title"/><br></h2>
+                    <p class="lead"><fmt:message key="slider.third-slide.description"/></p>
+                    <a class="btn btn-light-forlend btn-xl js-scroll-trigger" href="#third-slide-info"><fmt:message key="slider.button.read-more"/></a>
                 </div>
             </div>
         </div>
@@ -66,9 +65,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">First slide title!</h2>
+                    <h2 class="text-white mt-0"><fmt:message key="slider.first-slide.title"/></h2>
                     <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4">First slide info!</p>
+                    <p class="text-white-50 mb-4"><fmt:message key="slider.first-slide.title"/></p>
                 </div>
             </div>
         </div>
@@ -79,9 +78,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">Second slide title!</h2>
+                    <h2 class="text-white mt-0"><fmt:message key="slider.second-slide.title"/></h2>
                     <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4">Second slide info!</p>
+                    <p class="text-white-50 mb-4"><fmt:message key="slider.second-slide.title"/></p>
                 </div>
             </div>
         </div>
@@ -92,9 +91,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">Third slide title!</h2>
+                    <h2 class="text-white mt-0"><fmt:message key="slider.third-slide.title"/></h2>
                     <hr class="divider light my-4">
-                    <p class="text-white-50 mb-4">Third slide info!</p>
+                    <p class="text-white-50 mb-4"><fmt:message key="slider.third-slide.title"/></p>
                 </div>
             </div>
         </div>
