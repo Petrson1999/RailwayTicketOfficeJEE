@@ -19,4 +19,4 @@
 target/
 src/main/webapp/node/
 src/main/webapp/node_modules/
-src/main/webapp/built
+src/main/webapp/built/
