@@ -9,7 +9,7 @@ CREATE TABLE public.tickets
     user_id integer,
     cost double precision,
     seat_id integer,
-    status status,
+    text status,
     CONSTRAINT tickets_pk PRIMARY KEY (id),
     CONSTRAINT tickets_flights__fk FOREIGN KEY (flight_id)
         REFERENCES public.flights (id) MATCH SIMPLE

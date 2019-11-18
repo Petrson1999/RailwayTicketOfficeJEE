@@ -7,7 +7,7 @@ CREATE TABLE public.users
     id integer NOT NULL DEFAULT nextval('"User_id_seq"'::regclass),
     login text COLLATE pg_catalog."default",
     password text COLLATE pg_catalog."default",
-    role role,
+    text role,
     name text COLLATE pg_catalog."default",
     surname text COLLATE pg_catalog."default",
     CONSTRAINT user_pk PRIMARY KEY (id)
