@@ -40,11 +40,6 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#"><fmt:message key="header.change-language-english"/></a>
-            <form action="${pageContext.request.getSession().contextPath}/language" method="get">
-                <input type="submit" name="button1" value="Button 1" />
-                <input type="submit" name="button2" value="Button 2" />
-                <input type="submit" name="button3" value="Button 3" />
-            </form>
             <a class="dropdown-item" href="#"><fmt:message key="header.change-language-russian"/></a>
         </div>
     </div>

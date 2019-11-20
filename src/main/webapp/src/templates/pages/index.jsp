@@ -6,14 +6,8 @@
 <fmt:setBundle basename="${bundle}"/>
 <html>
 <head>
-    <meta charset="UTF-8"/>
     <title>Railway ticket office</title>
-    <base href="${pageContext.request.contextPath}/">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="built/css/main.css">
-    <link rel="stylesheet" href="node_modules/magnific-popup/dist/magnific-popup.css">
-    <link rel="stylesheet" href="built/css/creative.css">
-    <link rel="stylesheet" href="built/css/landing-page.css">
+    <%@include file="../blocks/head.jsp"%>
 </head>
 <body id="page-top">
 <%@ include file="../blocks/header.jsp" %>
@@ -187,7 +181,6 @@
         </div>
     </div>
 </div>
-
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/popper.js/dist/popper.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
