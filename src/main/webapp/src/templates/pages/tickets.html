@@ -50,10 +50,22 @@
                 sdfdsf
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">sdf</a>
-                <a class="dropdown-item" href="#">sdfdsf</a>
+                <a class="dropdown-item"><label for="en_locale_submit">en</label></a>
+                <a class="dropdown-item"><label for="ru_locale_submit">ru</label></a>
             </div>
         </div>
+        <form method="get" >
+            <div class="form-label-group">
+                <input type="hidden" id="en_locale" name="locale" value="en">
+            </div>
+            <button type="submit" id="en_locale_submit"></button>
+        </form>
+        <form method="get">
+            <div class="form-label-group">
+                <input type="hidden" id="ru_locale" name="locale" value="ru">
+            </div>
+            <button type="submit" id="ru_locale_submit"></button>
+        </form>
     </nav>
 
 
@@ -74,7 +86,7 @@
                                 <div class="col"></div>
                                 <div class="col">Куда</div>
                                 <div class="w-100 "></div>
-                                <select class="col selectpicker border rounded"  data-live-search="true">
+                                <select class="col selectpicker border rounded" data-live-search="true">
                                     <option>Станция1</option>
                                     <option>Станция2</option>
                                     <option>Станция3</option>
@@ -119,7 +131,7 @@
                                 <div class="col"></div>
                                 <div class="col">
                                     <div style="width: 55%; margin-left: auto; margin-right: auto;cursor: pointer">
-                                    <a class="btn btn-light-forlend btn-xl">Поиск поездов</a>
+                                        <a class="btn btn-light-forlend btn-xl">Поиск поездов</a>
                                     </div>
                                 </div>
                                 <div class="col"></div>
@@ -130,40 +142,45 @@
 
                 </div>
                 <div class="container">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">#Поезда</th>
-                        <th scope="col">Откуда / Куда</th>
-                        <th scope="col">Дата</th>
-                        <th scope="col">Свободных мест</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Киев /
-                            Одесса</td>
-                        <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Киев /
-                            Одесса</td>
-                        <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Киев /
-                            Одесса</td>
-                        <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                        <td>25</td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#Поезда</th>
+                            <th scope="col">Откуда / Куда</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Свободных мест</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Киев /
+                                Одесса
+                            </td>
+                            <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Киев /
+                                Одесса
+                            </td>
+                            <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Киев /
+                                Одесса
+                            </td>
+                            <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
+                            <td>25</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+
             </div>
         </div>
     </section>

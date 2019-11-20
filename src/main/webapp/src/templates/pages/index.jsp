@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="${locale}"/>
-<fmt:setBundle basename="${bundle}"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="${sessionScope.bundle}"/>
 <html>
 <head>
     <title>Railway ticket office</title>
@@ -153,15 +153,15 @@
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
                 <h5 class="card-title text-center"><fmt:message key="modal-login-title"/></h5>
-                <form class="form-signin">
+                <form class="form-signin" method="post">
                     <div class="form-label-group">
-                        <input type="email" id="inputEmailLogin" class="form-control" placeholder="<fmt:message key="modal-email"/>"
+                        <input type="email" name="login" id="inputEmailLogin" class="form-control" placeholder="<fmt:message key="modal-email"/>"
                                required autofocus>
                         <label for="inputEmailLogin"><fmt:message key="modal-email"/></label>
                     </div>
 
                     <div class="form-label-group">
-                        <input type="password" id="inputPasswordLogin" class="form-control" placeholder="<fmt:message key="modal-password"/>"
+                        <input type="password" name="password" id="inputPasswordLogin" class="form-control" placeholder="<fmt:message key="modal-password"/>"
                                required>
                         <label for="inputPasswordLogin"><fmt:message key="modal-password"/></label>
                     </div>
@@ -181,8 +181,9 @@
         </div>
     </div>
 </div>
+
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/popper.js/dist/popper.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="node_modules/jquery.easing/jquery.easing.min.js"></script>

@@ -19,7 +19,7 @@ public class CommandFactory {
         getCommandMap.put("/admin", new AdminCommand());
         getCommandMap.put("/language", new LanguageCommand());
 
-        postCommandMap.put("/", new LandingCommand());
+        postCommandMap.put("/", new LoginCommand());
     }
 
     private CommandFactory() {
