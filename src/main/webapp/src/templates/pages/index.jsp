@@ -153,17 +153,17 @@
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
                 <h5 class="card-title text-center"><fmt:message key="modal-login-title"/></h5>
-                <form class="form-signin" method="post">
+                <form class="form-signin" id="form-sign-in" method="post">
                     <div class="form-label-group">
-                        <input type="email" name="login" id="inputEmailLogin" class="form-control" placeholder="<fmt:message key="modal-email"/>"
+                        <input type="email" name="login" id="login" class="form-control" placeholder="<fmt:message key="modal-email"/>"
                                required autofocus>
-                        <label for="inputEmailLogin"><fmt:message key="modal-email"/></label>
+                        <label for="login"><fmt:message key="modal-email"/></label>
                     </div>
 
                     <div class="form-label-group">
-                        <input type="password" name="password" id="inputPasswordLogin" class="form-control" placeholder="<fmt:message key="modal-password"/>"
+                        <input type="password" name="password" id="password" class="form-control" placeholder="<fmt:message key="modal-password"/>"
                                required>
-                        <label for="inputPasswordLogin"><fmt:message key="modal-password"/></label>
+                        <label for="password"><fmt:message key="modal-password"/></label>
                     </div>
 
                     <div class="custom-control custom-checkbox mb-3">
@@ -189,5 +189,15 @@
 <script src="node_modules/jquery.easing/jquery.easing.min.js"></script>
 <script src="node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
 <script src="built/js/creative.js"></script>
+<script src="built/js/ajax/login.js"></script>
+
+<%--<script src="static/js/stellar.js"></script>
+<script src="static/js/countdown.js"></script>
+<script src="static/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+<script src="static/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="static/js/owl-carousel-thumb.min.js"></script>
+<script src="static/js/jquery.ajaxchimp.min.js"></script>
+<script src="static/vendors/counter-up/jquery.counterup.js"></script>
+<script src="static/js/mail-script.js"></script>--%>
 </body>
 </html>
