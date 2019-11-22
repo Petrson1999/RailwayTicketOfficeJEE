@@ -7,6 +7,7 @@
 <html>
 <head>
     <title>Railway ticket office</title>
+    <base href="${pageContext.request.contextPath}/">
     <%@include file="../blocks/head.jsp"%>
 </head>
 <body id="page-top">
@@ -181,12 +182,6 @@
         </div>
     </div>
 </div>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/popper.js/dist/popper.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="node_modules/jquery.easing/jquery.easing.min.js"></script>
-<script src="node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-<script src="built/js/creative.js"></script>
+<%@ include file="../blocks/scripts.jsp" %>
 </body>
 </html>
