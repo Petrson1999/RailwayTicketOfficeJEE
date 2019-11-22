@@ -23,11 +23,11 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal"
+                    <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
                        data-target="#ModalLogin"><fmt:message key="header.login"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal"
+                    <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
                        data-target="#ModalRegistration"><fmt:message key="header.registration"/></a>
                 </li>
             </ul>

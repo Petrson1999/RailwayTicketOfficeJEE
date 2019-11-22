@@ -1,10 +1,21 @@
-.cursor{
+.cursor {
     cursor: pointer;
 }
+
 .body {
     background: url('https://s2.best-wallpaper.net/wallpaper/2560x1440/1807/France-Limoges-city-night-train-station_2560x1440.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+.background-image {
+    background-image: url('https://s2.best-wallpaper.net/wallpaper/2560x1440/1807/France-Limoges-city-night-train-station_2560x1440.jpg');
+}
+
+.card-center {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }

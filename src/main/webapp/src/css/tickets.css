@@ -1,25 +1,32 @@
-.icon{
+.icon {
     height: 30px;
     width: 30px;
     background-size: cover;
 }
 
-.icon-calendar{
+.icon-calendar {
     background-image: url("https://img.icons8.com/cotton/2x/calendar.png");
 }
 
-.icon-time{
+.icon-time {
     background-image: url("https://img.icons8.com/plasticine/2x/time.png");
 }
 
-.icon-up{
+.icon-up {
     background-image: url("https://iconizer.net/files/DOT_pictograms/thumb/128/arrow_up_2.png");
 }
 
-.icon-down{
+.icon-down {
     background-image: url("https://iconizer.net/files/DOT_pictograms/thumb/128/arrow_down_2.png");
 }
 
-.icon-change{
+.icon-change {
     background-image: url("https://iconizer.net/files/Wireframe_mono_icons/orig/arrow_two_head.png");
+}
+
+.find-btn {
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
 }
