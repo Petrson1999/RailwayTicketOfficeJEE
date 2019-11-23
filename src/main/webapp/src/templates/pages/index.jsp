@@ -154,17 +154,17 @@
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
                 <h5 class="card-title text-center"><fmt:message key="modal-login-title"/></h5>
-                <form class="form-signin">
+                <form class="form-signin" id="form-sign-in" method="post">
                     <div class="form-label-group">
-                        <input type="email" id="inputEmailLogin" class="form-control" placeholder="<fmt:message key="modal-email"/>"
+                        <input type="email" name="login" id="login" class="form-control" placeholder="<fmt:message key="modal-email"/>"
                                required autofocus>
-                        <label for="inputEmailLogin"><fmt:message key="modal-email"/></label>
+                        <label for="login"><fmt:message key="modal-email"/></label>
                     </div>
 
                     <div class="form-label-group">
-                        <input type="password" id="inputPasswordLogin" class="form-control" placeholder="<fmt:message key="modal-password"/>"
+                        <input type="password" name="password" id="password" class="form-control" placeholder="<fmt:message key="modal-password"/>"
                                required>
-                        <label for="inputPasswordLogin"><fmt:message key="modal-password"/></label>
+                        <label for="password"><fmt:message key="modal-password"/></label>
                     </div>
 
                     <div class="custom-control custom-checkbox mb-3">

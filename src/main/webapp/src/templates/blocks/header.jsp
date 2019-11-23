@@ -39,8 +39,10 @@
             <fmt:message key="header.selected-language"/>
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#"><fmt:message key="header.change-language-english"/></a>
-            <a class="dropdown-item" href="#"><fmt:message key="header.change-language-russian"/></a>
+            <a class="dropdown-item" href="language?locale=en"><fmt:message
+                    key="header.change-language-english"/></a>
+            <a class="dropdown-item"  href="language?locale=ru"><fmt:message
+                    key="header.change-language-russian"/></a>
         </div>
     </div>
 </nav>
