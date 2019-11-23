@@ -17,7 +17,9 @@ public class CommandFactory {
         getCommandMap.put("/403", new ForbiddenPageCommand());
         getCommandMap.put("/profile", new ProfilePageCommand());
         getCommandMap.put("/tickets", new TicketsPageCommand());
-        getCommandMap.put("/admin", new AdminPageCommand());
+        getCommandMap.put("/admin-flights", new AdminFlightsPageCommand());
+        getCommandMap.put("/admin-stations", new AdminFlightsPageCommand());
+
         getCommandMap.put("/language", new LanguageCommand());
 
         postCommandMap.put("/", new LoginCommand());
