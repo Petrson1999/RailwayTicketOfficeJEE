@@ -1,61 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="${bundle}"/>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>admin-flights</title>
-    <!--vendor css-->
-    <link rel="stylesheet" type="text/css"
-          href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/ui-lightness/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/magnific-popup/dist/magnific-popup.css">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet"
-          href="../../../node_modules/bootstrap-datetimepicker-npm/build/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
-    <!--own css-->
-    <link rel="stylesheet" type="text/css" href="../../css/creative.css">
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../../css/landing-page.css">
-    <link rel="stylesheet" type="text/css" href="../../css/tickets.css">
-    <link rel="stylesheet" type="text/css" href="../../css/sb-admin.css">
+    <title>admin page</title>
+    <base href="${pageContext.request.contextPath}/">
+    <%@include file="../blocks/head.jsp" %>
 </head>
-<body class="body">
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger " href="#page-top">sdfsfds
-        </a>
-        <a class="navbar-brand js-scroll-trigger train-icon" href="#page-top">
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal"
-                       data-target="#ModalLogin">sdfs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal"
-                       data-target="#ModalRegistration">sdfsd</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="dropdown">
-        <button class="btn navbar-brand " type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            sdfdsf
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">sdf</a>
-            <a class="dropdown-item" href="#">sdfdsf</a>
-        </div>
-    </div>
-</nav>
-
+<body>
+<%@ include file="../blocks/header.jsp" %>
 <div class="background-image"></div>
 
 <section class="py-5">
@@ -73,24 +28,24 @@
                     <!-- Sidebar -->
                     <ul class="sidebar navbar-nav rounded-left ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="flights">
                                 <span>Рейсы</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="tables.html">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="stations">
                                 <span>Станции</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="trains">
                                 <span>Поезда</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="locomotives">
                                 <span>Локомотивы</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="wagons">
                                 <span>Вагоны</span></a>
                         </li>
 
@@ -153,8 +108,8 @@
      aria-hidden="true">
     <div class="modal-dialog" role="document">
 
-        <div class="card card-signin flex-row my-5 modal-content"  style="min-width: 130%">
-            <div class="card-body"  style=" height: 40em">
+        <div class="card card-signin flex-row my-5 modal-content" style="min-width: 130%">
+            <div class="card-body" style=" height: 40em">
                 <h5 class="card-title text-center">Добавление рейса</h5>
                 <form class="form-flight">
 
@@ -234,8 +189,11 @@
 
                         </div>
                     </div>
-                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="margin-top: 45px">Добавить</button>
-                    <a class="d-block text-center mt-2 small" style="cursor: pointer; margin-top: 5%" data-toggle="modal"
+                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="margin-top: 45px">
+                        Добавить
+                    </button>
+                    <a class="d-block text-center mt-2 small" style="cursor: pointer; margin-top: 5%"
+                       data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
                         Отменить</a>
                 </form>
@@ -243,25 +201,6 @@
         </div>
     </div>
 </div>
-
+<%@ include file="../blocks/scripts.jsp" %>
 </body>
-
-
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
-<script src="../../../node_modules/jquery.easing/jquery.easing.min.js"></script>
-<script src="../../../node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-<script src="../../../node_modules/popper.js/dist/umd/popper.js"></script>
-
-<script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="../../../built/js/creative.js"></script>
-<script src="../../../built/js/main.js"></script>
-
-<script src="../../../node_modules/moment/min/moment.min.js"></script>
-<script src="../../../node_modules/bootstrap-datetimepicker-npm/build/js/bootstrap-datetimepicker.min.js"></script>
-<script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-
-
 </html>
