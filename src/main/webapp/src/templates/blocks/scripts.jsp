@@ -9,11 +9,11 @@
 <!--jquery-->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 
+<!--popper js-->
+<script src="node_modules/popper.js/dist/umd/popper.js"></script>
+
 <!--jquery ui-->
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
-
-<!--popper js-->
-<script src="node_modules/popper.js/dist/popper.js"></script>
 
 <!--bootstrap-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -37,6 +37,11 @@
 
 <!--own scripts-->
 <script src="built/js/main.js"></script>
+<script src="built/js/toast.js"></script>
+
+<!--ajax-->
+<script src="built/js/ajax/login.js"></script>
+<script src="built/js/ajax/registration.js"></script>
 
 </body>
 </html>

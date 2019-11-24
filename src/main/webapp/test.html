@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<button type="button" id="button">sdfsdfsf</button>
+
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+    <!-- Position it -->
+    <div style="position: absolute; bottom: 0; right: 0;">
+        <div class="row p-3 row2">
+            <div class="col-12">
+                <div id="successTost"></div>
+                <div id="errorToast"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--jquery-->
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+
+
+<!--bootstrap-->
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<script>
+
+
+    $('#button').click(function () {
+        toastMesseg(tostType1,tostMes1);
+    });
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

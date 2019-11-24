@@ -159,6 +159,7 @@
 </div>
 
 </div>
+<%@ include file="../blocks/toast.jsp" %>
 <%@ include file="../blocks/scripts.jsp" %>
 </body >
 </html>

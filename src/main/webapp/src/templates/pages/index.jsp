@@ -107,11 +107,18 @@
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
                 <h5 class="card-title text-center"><fmt:message key="modal-registration-title"/></h5>
-                <form class="form-signin">
+                <form class="form-signin" id="form-registration" method="post">
+
                     <div class="form-label-group">
-                        <input type="text" id="inputUserame" class="form-control" placeholder="<fmt:message key="modal-registration-username"/>"
-                               required autofocus>
-                        <label for="inputUserame"><fmt:message key="modal-registration-username"/></label>
+                        <input type="text" id="first-name" class="form-control" placeholder="<fmt:message key="modal-registration-name"/>"
+                               required>
+                        <label for="first-name"><fmt:message key="modal-registration-name"/></label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="text" id="last-name" class="form-control" placeholder="<fmt:message key="modal-registration-surname"/>"
+                               required>
+                        <label for="last-name"><fmt:message key="modal-registration-surname"/></label>
                     </div>
 
                     <div class="form-label-group">
@@ -130,7 +137,7 @@
 
                     <div class="form-label-group">
                         <input type="password" id="inputConfirmPassword" class="form-control"
-                               placeholder="<fmt:message key="modal-registration-confirm-password"/>">
+                               placeholder="<fmt:message key="modal-registration-confirm-password"/>" required>
                         <label for="inputConfirmPassword"><fmt:message key="modal-registration-confirm-password"/></label>
                     </div>
 
@@ -182,6 +189,7 @@
         </div>
     </div>
 </div>
+<%@ include file="../blocks/toast.jsp" %>
 <%@ include file="../blocks/scripts.jsp" %>
 </body>
 </html>

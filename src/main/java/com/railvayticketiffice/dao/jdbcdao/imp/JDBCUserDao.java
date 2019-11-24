@@ -3,6 +3,7 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
 import com.railvayticketiffice.entity.User;
+import com.railvayticketiffice.enums.Role;
 import com.railvayticketiffice.exeptions.PersistException;
 import org.apache.log4j.Logger;
 
@@ -74,7 +75,7 @@ public class JDBCUserDao extends AbstractJDBCDao<User, Integer> {
         try {
             statement.setString(1, object.getLogin());
             statement.setString(2, object.getPassword());
-            statement.setString(3, object.getRole());
+            statement.setString(3, object.getRole().toString());
             statement.setString(4, object.getName());
             statement.setString(5, object.getSurname());
         } catch (SQLException e) {
@@ -98,7 +99,7 @@ public class JDBCUserDao extends AbstractJDBCDao<User, Integer> {
                 statement.setNull(2, Types.NVARCHAR);
             }
             if (object.getRole() != null) {
-                statement.setString(3, object.getRole());
+                statement.setString(3, object.getRole().toString());
             } else {
                 statement.setNull(3, Types.NVARCHAR);
             }
@@ -126,7 +127,7 @@ public class JDBCUserDao extends AbstractJDBCDao<User, Integer> {
                 resultSet.getInt(COLUMN_ID),
                 resultSet.getString(COLUMN_LOGIN),
                 resultSet.getString(COLUMN_PASSWORD),
-                resultSet.getString(COLUMN_ROLE),
+                Role.valueOf(resultSet.getString(COLUMN_ROLE)),
                 resultSet.getString(COLUMN_NAME),
                 resultSet.getString(COLUMN_SURNAME)
         );

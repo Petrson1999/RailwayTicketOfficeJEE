@@ -22,14 +22,29 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
-                       data-target="#ModalLogin"><fmt:message key="header.login"/></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
-                       data-target="#ModalRegistration"><fmt:message key="header.registration"/></a>
-                </li>
+                <c:choose>
+                    <c:when test="${not empty user}">
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger cursor" href="profile" ><fmt:message key="header.profole"/></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor" href="logout"><fmt:message key="header.logout"/></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor" href="tickets"><fmt:message key="header.tickets"/></a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
+                               data-target="#ModalLogin"><fmt:message key="header.login"/></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
+                               data-target="#ModalRegistration"><fmt:message key="header.registration"/></a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>

@@ -5,7 +5,7 @@ import com.railvayticketiffice.factory.ServiceFactory;
 import com.railvayticketiffice.web.data.AjaxResponse;
 import com.railvayticketiffice.web.data.Page;
 import com.railvayticketiffice.entity.User;
-import com.railvayticketiffice.services.LoginService;
+import com.railvayticketiffice.services.UserService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +17,12 @@ public class LoginCommand extends MultipleMethodCommand implements Command {
     private static final Logger LOG = Logger.getLogger(LoginCommand.class);
 
 
-    private LoginService userService;
+    private UserService userService;
     private static Gson gson = new Gson();
 
 
     public LoginCommand() {
-        this.userService = ServiceFactory.getLoginService();
+        this.userService = ServiceFactory.getUserService();
     }
 
     @Override

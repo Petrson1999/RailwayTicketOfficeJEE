@@ -20,10 +20,13 @@ public class CommandFactory {
         getCommandMap.put("/admin-flights", new AdminFlightsPageCommand());
         getCommandMap.put("/admin-stations", new AdminFlightsPageCommand());
 
+        getCommandMap.put("/logout", new LogoutCommand());
         getCommandMap.put("/language", new LanguageCommand());
 
         postCommandMap.put("/", new LoginCommand());
         postCommandMap.put("/login", new LoginCommand());
+        postCommandMap.put("/registration", new RegistrationCommand());
+
 
     }
 

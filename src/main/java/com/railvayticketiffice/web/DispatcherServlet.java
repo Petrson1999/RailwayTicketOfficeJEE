@@ -2,6 +2,8 @@ package com.railvayticketiffice.web;
 
 
 import com.railvayticketiffice.factory.CommandFactory;
+import com.railvayticketiffice.factory.ServiceFactory;
+import com.railvayticketiffice.services.PageService;
 import com.railvayticketiffice.web.command.Command;
 import com.railvayticketiffice.web.data.Page;
 import org.apache.log4j.Logger;
@@ -18,6 +20,7 @@ import java.io.PrintWriter;
 public class DispatcherServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(DispatcherServlet.class);
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
@@ -31,7 +34,8 @@ public class DispatcherServlet extends HttpServlet {
 
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = getPath(req);
+        PageService pageService = ServiceFactory.getPageService();
+        String path = pageService.getPath(req);
         LOG.debug(path);
         Command command = CommandFactory.getCommand(path, req.getMethod());
         Page page = command.perform(req);
@@ -51,11 +55,4 @@ public class DispatcherServlet extends HttpServlet {
         return "/built/templates/pages/" + path + ".jsp";
     }
 
-    private String getPath(HttpServletRequest req) {
-        String requestUri = req.getRequestURI();
-        int lastPath = requestUri.lastIndexOf('/');
-        String path = requestUri.substring(lastPath);
-        LOG.info("Path: " + path);
-        return path;
-    }
 }

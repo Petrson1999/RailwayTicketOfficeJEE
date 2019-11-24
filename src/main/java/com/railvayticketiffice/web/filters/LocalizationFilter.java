@@ -1,5 +1,6 @@
 package com.railvayticketiffice.web.filters;
 
+import com.railvayticketiffice.factory.ServiceFactory;
 import com.railvayticketiffice.services.PageService;
 import org.apache.log4j.Logger;
 
@@ -13,7 +14,7 @@ public class LocalizationFilter implements Filter {
     private static final Logger LOG = Logger.getLogger(LocalizationFilter.class);
     private static final String LOCALE = "locale";
     private static final String BUNDLE = "bundle";
-    public static final String PAGENAME = "pageName";
+    public static final String PAGE_NAME = "pageName";
 
     private String defaultLocale;
     private String defaultBundle;
@@ -24,7 +25,7 @@ public class LocalizationFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         this.defaultLocale = filterConfig.getInitParameter(LOCALE);
         this.defaultBundle = filterConfig.getInitParameter(BUNDLE);
-        this.pageService = new PageService();
+        this.pageService = ServiceFactory.getPageService();
     }
 
     @Override
@@ -76,7 +77,7 @@ public class LocalizationFilter implements Filter {
         int lastPath = requestUri.lastIndexOf('/');
         String path = requestUri.substring(lastPath);
         if (pageService.isPage(path)) {
-            httpServletRequest.getSession().setAttribute(PAGENAME, path);
+            httpServletRequest.getSession().setAttribute(PAGE_NAME, path);
         }
     }
 }

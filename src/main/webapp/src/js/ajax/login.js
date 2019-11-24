@@ -13,8 +13,7 @@ $(document).ready(function () {
                 if (data.success) {
                     $(location).attr('href', data.url)
                 } else {
-                    var textNode = document.createTextNode(data.message);
-                    $('.login.message').append(textNode);
+                    toastMesseg(false,data.message);
                 }
 
             }

@@ -1,11 +1,13 @@
 package com.railvayticketiffice.entity;
 
+import com.railvayticketiffice.enums.Role;
+
 public class User implements Identified<Integer> {
 
     public User() {
     }
 
-    public User(int id, String login, String password, String role, String name, String surname) {
+    public User(int id, String login, String password, Role role, String name, String surname) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -20,7 +22,7 @@ public class User implements Identified<Integer> {
 
     private String password;
 
-    private String role;
+    private Role role;
 
     private String name;
 
@@ -51,11 +53,11 @@ public class User implements Identified<Integer> {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
