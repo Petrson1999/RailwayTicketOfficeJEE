@@ -16,6 +16,7 @@ function toastMesseg(type, message) {
             autohide: true,
             delay: 5000
         });
+
         document.getElementById("success").innerHTML = message;
         $('.toast').toast('show');
     }

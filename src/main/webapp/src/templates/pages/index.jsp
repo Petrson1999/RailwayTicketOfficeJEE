@@ -103,9 +103,9 @@
 <div class="modal fade" id="ModalRegistration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
+                <%@ include file="../blocks/toast.jsp" %>
                 <h5 class="card-title text-center"><fmt:message key="modal-registration-title"/></h5>
                 <form class="form-signin" id="form-registration" method="post">
 
@@ -189,7 +189,6 @@
         </div>
     </div>
 </div>
-<%@ include file="../blocks/toast.jsp" %>
 <%@ include file="../blocks/scripts.jsp" %>
 </body>
 </html>
