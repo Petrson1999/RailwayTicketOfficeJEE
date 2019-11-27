@@ -2,14 +2,18 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
+import com.railvayticketiffice.dao.jdbcdao.interfaces.StationDao;
 import com.railvayticketiffice.entity.Station;
 import com.railvayticketiffice.exeptions.PersistException;
+import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class JDBCStationDao extends AbstractJDBCDao<Station, Integer> {
+public class JDBCStationDao extends AbstractJDBCDao<Station, Integer> implements StationDao {
 
     private static final Logger LOG = Logger.getLogger(JDBCStationDao.class);
 
@@ -78,4 +82,23 @@ public class JDBCStationDao extends AbstractJDBCDao<Station, Integer> {
         );
     }
 
+    @Override
+    public String getStationName(int stationId) throws PersistException{
+        final String sql = SqlConstants.SELECT + " " + COLUMN_NAME + " " + SqlConstants.FROM + " " + TABLE_STATIONS +
+                " " + SqlConstants.WHERE + " " + COLUMN_ID + "= ?";
+        String name = null;
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, stationId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                name = rs.getString(COLUMN_NAME);
+            }
+        } catch (SQLException e) {
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
+        return name;
+    }
 }

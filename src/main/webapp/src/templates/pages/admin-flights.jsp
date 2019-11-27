@@ -19,7 +19,7 @@
         <div class="card-body" style="padding: 0">
 
             <div class="container-fluid" style="padding: 0">
-                <h5 class="card-title text-center" style="margin-top: 1%">Админимтрирование</h5>
+                <h5 class="card-title text-center" style="margin-top: 1%"><fmt:message key="admin"/></h5>
                 <hr style="margin-bottom: 0">
             </div>
             <div class="container-fluid" style="padding: 0">
@@ -29,26 +29,17 @@
                     <ul class="sidebar navbar-nav rounded-left ">
                         <li class="nav-item active">
                             <a class="nav-link" href="flights">
-                                <span>Рейсы</span></a>
+                                <span><fmt:message key="admin.flights"/></span></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="stations">
-                                <span>Станции</span></a>
+                                <span><fmt:message key="admin.stations"/></span></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="trains">
-                                <span>Поезда</span>
+                                <span><fmt:message key="admin.trains"/></span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="locomotives">
-                                <span>Локомотивы</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="wagons">
-                                <span>Вагоны</span></a>
-                        </li>
-
                     </ul>
 
                     <div id="content-wrapper">
@@ -56,16 +47,16 @@
                         <div class="container">
                             <div style="width: 20%; cursor: pointer; margin: 3% auto;">
                                 <a class="btn btn-dark btn-xl" style="color: white" data-toggle="modal"
-                                   data-target="#ModalFlight">Добавить рейс</a>
+                                   data-target="#ModalFlight"><fmt:message key="admin.add-flight"/></a>
                             </div>
                         </div>
                         <div class="container">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#Поезда</th>
-                                    <th scope="col">Откуда / Куда</th>
-                                    <th scope="col">Дата</th>
+                                    <th scope="col">#<fmt:message key="tickets.train"/></th>
+                                    <th scope="col"><fmt:message key="tickets.from-where-to-where"/></th>
+                                    <th scope="col"><fmt:message key="tickets.date"/></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -110,7 +101,7 @@
 
         <div class="card card-signin flex-row my-5 modal-content" style="min-width: 130%">
             <div class="card-body" style=" height: 40em">
-                <h5 class="card-title text-center">Добавление рейса</h5>
+                <h5 class="card-title text-center"><fmt:message key="admin.adding-flight"/></h5>
                 <form class="form-flight">
 
                     <div class="form-group">
@@ -118,8 +109,8 @@
                             <div class="row">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col">Откуда :</div>
-                                        <div class="col">Куда :</div>
+                                        <div class="col"><fmt:message key="tickets.where-from"/> :</div>
+                                        <div class="col"><fmt:message key="tickets.where"/> :</div>
                                         <div class="w-100" style="margin: 2%"></div>
                                         <select class="col selectpicker border rounded" data-live-search="true">
                                             <option class="bg-dark" style="color: white">Станция1</option>
@@ -132,8 +123,8 @@
                                             <option class="bg-dark" style="color: white">Станция3</option>
                                         </select>
                                         <div class="w-100 " style="margin: 2%"></div>
-                                        <div class="col">Дата отправления :</div>
-                                        <div class="col">Дата прибытия :</div>
+                                        <div class="col"><fmt:message key="admin.departure-date"/> :</div>
+                                        <div class="col"><fmt:message key="admin.arrival-date"/> :</div>
                                         <div class="w-100 " style="margin: 2%"></div>
                                         <div class="col border rounded input-group date">
                                             <input type='text' class="form-control" id='date-departure'
@@ -150,8 +141,8 @@
                                             </span>
                                         </div>
                                         <div class="w-100 " style="margin: 2%"></div>
-                                        <div class="col">Время отправления :</div>
-                                        <div class="col">Время прибытия :</div>
+                                        <div class="col"><fmt:message key="admin.departure-time"/> :</div>
+                                        <div class="col"><fmt:message key="admin.arrival-time"/> :</div>
                                         <div class="w-100 " style="margin: 2%"></div>
                                         <div class="col" style="padding: 0">
                                             <div class='border rounded input-group date'>
@@ -172,7 +163,7 @@
                                             </div>
                                         </div>
                                         <div class="w-100 " style="margin: 2%"></div>
-                                        <div class="col">Поезд :</div>
+                                        <div class="col"><fmt:message key="tickets.train"/> :</div>
                                         <div class="w-100 " style="margin: 2%"></div>
                                         <div class=" col row" style="width: 100%">
                                             <select class="col selectpicker border rounded" data-live-search="true">
@@ -190,12 +181,12 @@
                         </div>
                     </div>
                     <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="margin-top: 45px">
-                        Добавить
+                        <fmt:message key="admin.add"/>
                     </button>
                     <a class="d-block text-center mt-2 small" style="cursor: pointer; margin-top: 5%"
                        data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
-                        Отменить</a>
+                        <fmt:message key="tickets.modal.сancel"/></a>
                 </form>
             </div>
         </div>

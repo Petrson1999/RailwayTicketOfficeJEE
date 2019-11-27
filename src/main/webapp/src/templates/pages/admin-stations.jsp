@@ -39,15 +39,6 @@
                                 <span>Поезда</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="locomotives">
-                                <span>Локомотивы</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="wagons">
-                                <span>Вагоны</span></a>
-                        </li>
-
                     </ul>
 
                     <div id="content-wrapper">

@@ -17,25 +17,25 @@
 <section class="py-5">
     <div class="card flex-row my-5 card-center">
         <div class="card-body">
-            <h5 class="card-title text-center">Профиль</h5>
+            <h5 class="card-title text-center"><fmt:message key="profile.profile"/></h5>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Логин : vladimir@gmail.com</li>
-                <li class="list-group-item">Имя : Владимир</li>
-                <li class="list-group-item">Фамилия : Петренко</li>
+                <li class="list-group-item"><fmt:message key="profile.login"/> : ${user.login}</li>
+                <li class="list-group-item"><fmt:message key="modal-registration-name"/> : ${user.name}</li>
+                <li class="list-group-item"><fmt:message key="modal-registration-surname"/> : ${user.surname}</li>
             </ul>
-            <h5 class="card-title text-center profile-card-header">Мои билеты</h5>
+            <h5 class="card-title text-center profile-card-header"><fmt:message key="profile.my-tickets"/></h5>
             <div class="container">
                 <div class="margin-right-10">
-                    <input type="checkbox" class="custom-checkbox">Показывать прошедшие
+                    <input type="checkbox" class="custom-checkbox"><fmt:message key="profile.show_past"/>
                 </div>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">#Поезда</th>
-                        <th scope="col">Откуда / Куда</th>
-                        <th scope="col">Дата</th>
-                        <th scope="col">Вагон</th>
-                        <th scope="col">Место</th>
+                        <th scope="col">#<th scope="col">#<fmt:message key="tickets.train"/></th></th>
+                        <th scope="col"><fmt:message key="tickets.from-where-to-where"/></th>
+                        <th scope="col"><fmt:message key="tickets.date"/></th>
+                        <th scope="col"><fmt:message key="profile.wagon"/></th>
+                        <th scope="col"><fmt:message key="profile.seat"/></th>
                     </tr>
                     </thead>
                     <tbody>

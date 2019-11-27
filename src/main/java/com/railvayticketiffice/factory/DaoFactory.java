@@ -1,6 +1,6 @@
 package com.railvayticketiffice.factory;
 
-import com.railvayticketiffice.dao.jdbcdao.imp.JDBCUserDao;
+import com.railvayticketiffice.dao.jdbcdao.imp.*;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.CrudGenericDao;
 import com.railvayticketiffice.enums.DaoType;
 
@@ -13,6 +13,12 @@ public class DaoFactory {
 
     static {
         daoMap.put(DaoType.USER, new JDBCUserDao());
+        daoMap.put(DaoType.FLIGHT, new JDBCFlightDao());
+        daoMap.put(DaoType.STATION, new JDBCStationDao());
+        daoMap.put(DaoType.TRAIN, new JDBCTrainDao());
+        daoMap.put(DaoType.WAGON, new JDBCWagonDao());
+        daoMap.put(DaoType.SEAT, new JDBCSeatDao());
+        daoMap.put(DaoType.TICKET, new JDBCTicketDao());
     }
 
     private DaoFactory() {

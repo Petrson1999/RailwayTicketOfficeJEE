@@ -2,16 +2,19 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
+import com.railvayticketiffice.dao.jdbcdao.interfaces.SeatDao;
 import com.railvayticketiffice.entity.Seat;
 import com.railvayticketiffice.exeptions.PersistException;
+import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
+import java.util.List;
+
+import static com.railvayticketiffice.constant.SqlConstants.ALL;
 
 
-public class JDBCSeatDao extends AbstractJDBCDao<Seat, Integer> {
+public class JDBCSeatDao extends AbstractJDBCDao<Seat, Integer> implements SeatDao {
 
     private static final Logger LOG = Logger.getLogger(JDBCSeatDao.class);
 
@@ -23,13 +26,13 @@ public class JDBCSeatDao extends AbstractJDBCDao<Seat, Integer> {
 
     @Override
     public String getSelectQuery() {
-        return SqlConstants.SELECT + " " + SqlConstants.ALL + " " + SqlConstants.FROM + " " + TABLE_SEATS;
+        return SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_SEATS;
     }
 
     @Override
     public String getCreateQuery() {
         return SqlConstants.INSERT_INTO + " " + TABLE_SEATS + " (" + COLUMN_WAGON_ID + ", " + COLUMN_PLACE_NUMBER + ") " +
-                SqlConstants.VALUES + " (?,?) " + "RETURNING " + SqlConstants.ALL;
+                SqlConstants.VALUES + " (?,?) " + "RETURNING " + ALL;
     }
 
     @Override
@@ -87,5 +90,23 @@ public class JDBCSeatDao extends AbstractJDBCDao<Seat, Integer> {
                 resultSet.getInt(COLUMN_WAGON_ID),
                 resultSet.getInt(COLUMN_PLACE_NUMBER)
         );
+    }
+
+    @Override
+    public List<Seat> getWagonSeats(int wagonId) throws PersistException {
+        final String sql = SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_SEATS +
+                " " + SqlConstants.WHERE + " " + COLUMN_WAGON_ID + "= ?";
+        List<Seat> seats;
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, wagonId);
+            ResultSet rs = statement.executeQuery();
+            seats = parseResultSet(rs);
+        } catch (SQLException e) {
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
+        return seats;
     }
 }

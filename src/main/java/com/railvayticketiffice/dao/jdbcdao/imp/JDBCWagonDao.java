@@ -3,18 +3,25 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
+import com.railvayticketiffice.dao.jdbcdao.interfaces.WagonDao;
 import com.railvayticketiffice.entity.Wagon;
 import com.railvayticketiffice.exeptions.PersistException;
+import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import static com.railvayticketiffice.constant.SqlConstants.ALL;
 import static java.sql.Types.INTEGER;
 import static java.sql.Types.NVARCHAR;
 
 
-public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> {
+public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> implements WagonDao {
 
     private static final Logger LOG = Logger.getLogger(JDBCWagonDao.class);
 
@@ -24,11 +31,11 @@ public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> {
 
     private static final String COLUMN_TYPE_ID = "type_id";
 
-    private static final String COLUMN_NAME = "type_id";
+    private static final String COLUMN_NAME = "name";
 
     @Override
     public String getSelectQuery() {
-        return SqlConstants.SELECT + " " + SqlConstants.ALL + " " + SqlConstants.FROM + " " + TABLE_WAGONS;
+        return SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_WAGONS;
     }
 
     @Override
@@ -40,7 +47,7 @@ public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> {
                 COLUMN_NAME +
                 ") " +
                 SqlConstants.VALUES + " (?,?,?) " +
-                "RETURNING " + SqlConstants.ALL;
+                "RETURNING " + ALL;
     }
 
     @Override
@@ -109,5 +116,24 @@ public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> {
                 resultSet.getInt(COLUMN_TRAIN_ID),
                 resultSet.getInt(COLUMN_TYPE_ID),
                 resultSet.getString(COLUMN_NAME));
+    }
+
+    @Override
+    public List<Wagon> getTrainWagons(int trainId) throws PersistException {
+        final String sql = SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_WAGONS +
+                " " + SqlConstants.WHERE + " " + COLUMN_TRAIN_ID + "= ?";
+        List<Wagon> wagons;
+
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trainId);
+            ResultSet rs = statement.executeQuery();
+            wagons = parseResultSet(rs);
+        } catch (SQLException e) {
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
+        return wagons;
     }
 }

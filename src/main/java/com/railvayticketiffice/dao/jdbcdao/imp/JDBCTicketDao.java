@@ -2,15 +2,19 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
+import com.railvayticketiffice.dao.jdbcdao.interfaces.TicketsDao;
 import com.railvayticketiffice.entity.Ticket;
 import com.railvayticketiffice.exeptions.PersistException;
+import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
+import java.text.ParseException;
+import java.util.List;
 
-public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> {
+import static com.railvayticketiffice.constant.SqlConstants.ALL;
+
+public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements TicketsDao {
 
     private static final Logger LOG = Logger.getLogger(JDBCTicketDao.class);
 
@@ -28,7 +32,7 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> {
 
     @Override
     public String getSelectQuery() {
-        return SqlConstants.SELECT + " " + SqlConstants.ALL + " " + SqlConstants.FROM + " " + TABLE_TICKETS;
+        return SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_TICKETS;
     }
 
     @Override
@@ -42,7 +46,7 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> {
                 COLUMN_STATUS +
                 ") " +
                 SqlConstants.VALUES + " (?,?,?,?,?) " +
-                "RETURNING " + SqlConstants.ALL;
+                "RETURNING " + ALL;
     }
 
     @Override
@@ -126,8 +130,26 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> {
                 resultSet.getInt(COLUMN_FLIGHT_ID),
                 resultSet.getInt(COLUMN_USER_ID),
                 resultSet.getDouble(COLUMN_COST),
-                resultSet.getInt(COLUMN_SEAT_ID),
-                resultSet.getString(COLUMN_STATUS)
+                resultSet.getInt(COLUMN_SEAT_ID)
         );
+    }
+
+    @Override
+    public List<Ticket> getFlightTickets(int flightId) throws PersistException {
+        final String sql = SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_TICKETS +
+                " " + SqlConstants.WHERE + " " + COLUMN_FLIGHT_ID + "= ?";
+        List<Ticket> tickets;
+
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, flightId);
+            ResultSet rs = statement.executeQuery();
+            tickets = parseResultSet(rs);
+        } catch (SQLException e) {
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
+        return tickets;
     }
 }

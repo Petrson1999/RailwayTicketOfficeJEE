@@ -30,11 +30,11 @@
                         <li class="nav-item">
                             <a class="nav-link cursor" href="logout"><fmt:message key="header.logout"/></a>
                         </li>
+                    </c:when>
+                    <c:otherwise>
                         <li class="nav-item">
                             <a class="nav-link cursor" href="tickets"><fmt:message key="header.tickets"/></a>
                         </li>
-                    </c:when>
-                    <c:otherwise>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
                                data-target="#ModalLogin"><fmt:message key="header.login"/></a>

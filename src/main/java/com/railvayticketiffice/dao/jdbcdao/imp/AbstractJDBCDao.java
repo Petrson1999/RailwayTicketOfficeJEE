@@ -8,6 +8,7 @@ import com.railvayticketiffice.exeptions.PersistException;
 import com.railvayticketiffice.entity.Identified;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +40,6 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         try {
             while (resultSet.next()) {
                 T entity = getMapper().map(resultSet);
-                System.out.println(entity);
                 result.add(entity);
             }
         } catch (Exception e) {
@@ -52,7 +52,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
     public T persist(T object) throws PersistException {
         T persistInstance;
         String sql = getCreateQuery();
-        try (PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) {
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql))
+             /*   PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) */{
             prepareStatementForInsert(statement, object);
             ResultSet rs = statement.executeQuery();
             List<T> list = parseResultSet(rs);
@@ -74,8 +76,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
     public T getByPK(Integer key) throws PersistException {
         List<T> list;
         String sql = getSelectQuery();
-        sql += SqlConstants.WHERE + " " + COLUMN_ID + " = ?";
-        try (PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) {
+        sql += " " + SqlConstants.WHERE + " " + COLUMN_ID + " = ?";
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, key);
             ResultSet rs = statement.executeQuery();
             list = parseResultSet(rs);
@@ -100,7 +103,8 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
     @Override
     public void update(T object) throws PersistException {
         String sql = getUpdateQuery();
-        try (PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) {
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForUpdate(statement, object);
             int count = statement.executeUpdate();
             if (count != 1) {
@@ -118,7 +122,8 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
     @Override
     public void delete(T object) throws PersistException {
         String sql = getDeleteQuery();
-        try (PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) {
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setObject(1, object.getId());
             int count = statement.executeUpdate();
             if (count != 1) {
@@ -137,7 +142,8 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
     public List<T> getAll() throws PersistException {
         List<T> list;
         String sql = getSelectQuery();
-        try (PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) {
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             list = parseResultSet(rs);
         } catch (SQLException e) {

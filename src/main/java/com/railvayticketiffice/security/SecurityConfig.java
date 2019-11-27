@@ -13,11 +13,9 @@ public class SecurityConfig {
         securityPages.put(Role.ADMIN, Arrays.asList("/" +
                 PageUrlConstants.ADMIN_FLIGHTS_PAGE, "/" +
                 PageUrlConstants.ADMIN_STATIONS_PAGE, "/" +
-                PageUrlConstants.PROFILE_PAGE, "/" +
-                PageUrlConstants.TICKETS_PAGE));
+                PageUrlConstants.PROFILE_PAGE));
         securityPages.put(Role.USER, Arrays.asList("/" +
-                PageUrlConstants.PROFILE_PAGE, "/" +
-                PageUrlConstants.TICKETS_PAGE));
+                PageUrlConstants.PROFILE_PAGE));
     }
 
     public static boolean isSecurePage(String page) {

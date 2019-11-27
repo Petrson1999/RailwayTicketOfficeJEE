@@ -4,13 +4,12 @@ public class Ticket implements Identified<Integer> {
 
     public Ticket(){}
 
-    public Ticket(int id, int flightId, int userId, double cost, int seatId, String status){
+    public Ticket(int id, int flightId, int userId, double cost, int seatId){
         this.id = id;
         this.flightId = flightId;
         this.userId = userId;
         this.cost = cost;
         this.seatId = seatId;
-        this.status = status;
     }
 
     private int id;

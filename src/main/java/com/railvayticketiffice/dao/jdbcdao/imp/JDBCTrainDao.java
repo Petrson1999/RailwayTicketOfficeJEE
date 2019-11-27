@@ -3,22 +3,26 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
+import com.railvayticketiffice.dao.jdbcdao.interfaces.TrainDao;
 import com.railvayticketiffice.entity.Train;
 import com.railvayticketiffice.exeptions.PersistException;
+import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static java.sql.Types.*;
 
-public class JDBCTrainDao extends AbstractJDBCDao<Train, Integer> {
+public class JDBCTrainDao extends AbstractJDBCDao<Train, Integer> implements TrainDao {
 
     private static final Logger LOG = Logger.getLogger(JDBCTrainDao.class);
 
     private static final String TABLE_TRAINS = "trains";
 
-    private static final String COLUMN_NAME = "ticket_id";
+    private static final String COLUMN_NAME = "name";
 
     private static final String COLUMN_LOCOMOTIVE_ID = "locomotive_id";
 
@@ -90,5 +94,25 @@ public class JDBCTrainDao extends AbstractJDBCDao<Train, Integer> {
                 resultSet.getString(COLUMN_NAME),
                 resultSet.getInt(COLUMN_LOCOMOTIVE_ID)
         );
+    }
+
+    @Override
+    public String getTrainName(int trainId) throws PersistException {
+        final String sql = SqlConstants.SELECT + " " + COLUMN_NAME + " " + SqlConstants.FROM + " " + TABLE_TRAINS +
+                " " + SqlConstants.WHERE + " " + COLUMN_ID + "= ?";
+        String name = null;
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trainId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                name = rs.getString(COLUMN_NAME);
+            }
+        } catch (SQLException e) {
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
+        return name;
     }
 }
