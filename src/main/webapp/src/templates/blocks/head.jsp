@@ -1,10 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>head</title>
-</head>
-<body>
-<meta charset="UTF-8"/>
 
 <!--jquery-ui-->
 <link rel="stylesheet" type="text/css"
@@ -32,5 +26,3 @@
 <link rel="stylesheet" type="text/css" href="built/css/tickets.css">
 <link rel="stylesheet" type="text/css" href="built/css/profile.css">
 
-</body>
-</html>

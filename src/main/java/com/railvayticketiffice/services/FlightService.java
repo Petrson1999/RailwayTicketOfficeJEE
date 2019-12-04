@@ -3,6 +3,7 @@ package com.railvayticketiffice.services;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.CrudGenericDao;
 import com.railvayticketiffice.dto.FlightDto;
 import com.railvayticketiffice.dto.SeatsDto;
+import com.railvayticketiffice.dto.WagonDto;
 import com.railvayticketiffice.entity.Flight;
 import com.railvayticketiffice.entity.Seat;
 import com.railvayticketiffice.entity.Ticket;
@@ -92,8 +93,8 @@ public class FlightService {
 
         for (Wagon wagon : wagons) {
             List<Seat> wagonAllSeats = seatService.getWagonSeats(wagon.getId());
-            List<Seat> wagonFreeSeats =null;
-            if(wagonAllSeats!=null) {
+            List<Seat> wagonFreeSeats = null;
+            if (wagonAllSeats != null) {
                 wagonFreeSeats = getFreeSeatsInWagon(tickets, wagonAllSeats);
             }
             if (wagonFreeSeats != null) {
@@ -108,15 +109,14 @@ public class FlightService {
 
     private List<Seat> getFreeSeatsInWagon(List<Ticket> busyTickets, List<Seat> wagonSeat) {
         List<Seat> freeWagonSeat = new ArrayList<>();
-        if(wagonSeat!= null) {
+        if (wagonSeat != null) {
             for (Seat seat : wagonSeat) {
                 if (busyTickets.stream().noneMatch(x -> x.getSeatId() == seat.getId()) && freeWagonSeat.stream().noneMatch(x -> x.equals(seat))) {
                     freeWagonSeat.add(seat);
                 }
             }
             return freeWagonSeat;
-        }
-        else return null;
+        } else return null;
     }
 
     private int getAllFreeSeatsNumber(int flightId) {
@@ -136,6 +136,39 @@ public class FlightService {
             LOG.error(e);
         }
         return flight;
+    }
+
+
+
+    public List<WagonDto> getFlightWagonDto(int flightId) {
+        List<WagonDto> wagonDtos = new ArrayList<>();
+
+        Flight flight = getByPk(flightId);
+
+        if (flight == null) {
+            return null;
+        }
+
+        List<Wagon> wagons = wagonService.getTrainWagons(flight.getTrainId());
+        if (wagons == null) {
+            return null;
+        }
+
+        List<Ticket> tickets = ticketService.getFlightTickets(flight.getId());
+
+        for (Wagon wagon : wagons) {
+            List<Seat> wagonAllSeats = seatService.getWagonSeats(wagon.getId());
+            List<Seat> wagonFreeSeats = null;
+            if (wagonAllSeats != null) {
+                wagonFreeSeats = getFreeSeatsInWagon(tickets, wagonAllSeats);
+            }
+            if (wagonFreeSeats != null) {
+                wagonDtos.add(new WagonDto(wagon , wagonService.getWagonType(wagon.getWagonTypeId()), wagonFreeSeats));
+            }
+        }
+
+        return wagonDtos;
+
     }
 }
 

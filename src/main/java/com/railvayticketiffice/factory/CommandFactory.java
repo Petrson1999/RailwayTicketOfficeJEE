@@ -23,11 +23,13 @@ public class CommandFactory {
         getCommandMap.put("/logout", new LogoutCommand());
         getCommandMap.put("/language", new LanguageCommand());
         getCommandMap.put("/seats", new SeatsCommand());
+        getCommandMap.put("/flights", new FlightsCommand());
 
 
         postCommandMap.put("/", new LoginCommand());
         postCommandMap.put("/login", new LoginCommand());
         postCommandMap.put("/registration", new RegistrationCommand());
+        postCommandMap.put("/flights", new FlightsCommand());
 
 
     }

@@ -7,108 +7,115 @@
 <head>
     <title>Buy tickets</title>
     <base href="${pageContext.request.contextPath}/">
-    <%@include file="../blocks/head.jsp"%>
+    <%@include file="../blocks/head.jsp" %>
 </head>
-<body id="page-top" class="body">
+<body id="page-top" class="body" onload="setLastSearch()">
 <%@ include file="../blocks/header.jsp" %>
 
 <div>
-
 
     <div class="background-image"></div>
 
     <!-- Page Content -->
     <section class="py-5">
         <div class="card flex-row my-5 card-center">
+            <%@ include file="../blocks/toast.jsp" %>
             <div class="card-body">
                 <h5 class="card-title text-center"><fmt:message key="tickets.order-tickets"/></h5>
-                <hr>
+                <hr style="margin-bottom: 3.5%">
                 <div class="container">
                     <div class="row">
                         <div class="container">
-                            <div class="row">
-                                <div class="col"><fmt:message key="tickets.where-from"/></div>
-                                <div class="col"></div>
-                                <div class="col"><fmt:message key="tickets.where"/></div>
-                                <div class="w-100 "></div>
-                                <select class="col selectpicker border rounded" data-live-search="true">
-                                    <option class="bg-dark" style="color: white">Станция1</option>
-                                    <option class="bg-dark" style="color: white">Станция2</option>
-                                    <option class="bg-dark" style="color: white">Станция3</option>
-                                </select>
-                                <div class="col">
-                                    <div class="icon icon-change"
-                                         style="width: 30px; margin-left: auto; margin-right: auto;cursor: pointer">
+                            <form id="form-flights">
+                                <div class="row">
+                                    <div class="col"><fmt:message key="tickets.where-from"/></div>
+                                    <div class="col"></div>
+                                    <div class="col"><fmt:message key="tickets.where"/></div>
+                                    <div class="w-100 "></div>
+                                    <select class="col custom-select custom-select-sm" name="departureStationSelector"
+                                            id="departureStationSelector" style="margin-bottom: 3.5%">
+                                        <c:forEach items="${stations}" var="station">
+                                            <option value="${station.id}">${station.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <div class="col" onclick="changeStation()">
+                                        <div class="icon icon-change"
+                                             style="width: 30px; margin-left: auto; margin-right: auto;cursor: pointer">
+                                        </div>
                                     </div>
-                                </div>
-                                <select class="col selectpicker border rounded " data-live-search="true">
-                                    <option class="bg-dark" style="color: white">Станция1</option>
-                                    <option class="bg-dark" style="color: white">Станция2</option>
-                                    <option class="bg-dark" style="color: white">Станция3</option>
-                                </select>
-                                <div class="w-100 "></div>
-                                <div class="col"><fmt:message key="tickets.departure-date"/></div>
-                                <div class="col"><fmt:message key="tickets.departure-time-from"/></div>
-                                <div class="col"></div>
-                                <div class="w-100 "></div>
-                                <div class='col border rounded input-group date'>
-                                    <input type='text' class="form-control" id='datetimepicker' style="border: none;"/>
-                                    <span class="input-group-addon icon icon-calendar"
-                                          style="margin-top: 1%; margin-left: 4%">
-                                    </span>
-                                </div>
-                                <div class="col">
-                                    <div class=' border rounded input-group date'>
-                                        <input type='text' class="form-control" id='datetimepicker1'
-                                               style="border: none"/>
-                                        <span class="input-group-addon icon icon-time"
+                                    <select class="col custom-select custom-select-sm" name="arrivalStationSelector"
+                                            id="arrivalStationSelector" style="margin-bottom: 3.5%">
+                                        <c:forEach items="${stations}" var="station">
+                                            <option value="${station.id}">${station.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <div class="w-100 "></div>
+                                    <div class="col"><fmt:message key="tickets.departure-date"/></div>
+                                    <div class="col"><fmt:message key="tickets.departure-time-from"/></div>
+                                    <div class="col"></div>
+                                    <div class="w-100 "></div>
+                                    <div class='col border rounded input-group date'>
+                                        <input type='text' class="form-control" name="date" id='datetimepicker'
+                                               style="border: none;"/>
+                                        <span class="input-group-addon icon icon-calendar"
                                               style="margin-top: 1%; margin-left: 4%">
                                     </span>
                                     </div>
+                                    <div class="col">
+                                        <div class=' border rounded input-group date'>
+                                            <input type='text' class="form-control" name="time" id='datetimepicker1'
+                                                   style="border: none"/>
+                                            <span class="input-group-addon icon icon-time"
+                                                  style="margin-top: 1%; margin-left: 4%">
+                                            </span>
+                                        </div>
 
-                                </div>
-                                <div class="col"></div>
-                                <div class="w-100 "></div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                                <div class="w-100" style="margin-top: 30px"></div>
-                                <div class="col"></div>
-                                <div class="col">
-                                    <div class="find-btn">
-                                        <a class="btn btn-light-forlend btn-xl"><fmt:message key="tickets.searc"/></a>
                                     </div>
+                                    <div class="col"></div>
+                                    <div class="w-100 "></div>
+                                    <div class="col"></div>
+                                    <div class="col"></div>
+                                    <div class="col"></div>
+                                    <div class="w-100" style="margin-top: 30px"></div>
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit">
+                                            <fmt:message key="tickets.searc"/></button>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="w-100" style="margin-top: 30px"></div>
                                 </div>
-                                <div class="col"></div>
-                                <div class="w-100" style="margin-top: 30px"></div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
                 </div>
-                <div class="container">
-                    <table class="table table-hover">
-                        <thead>
-                        <th scope="col">#<fmt:message key="tickets.train"/></th>
-                        <th scope="col"><fmt:message key="tickets.from-where-to-where"/></th>
-                        <th scope="col"><fmt:message key="tickets.date"/></th>
-                        <th scope="col"><fmt:message key="tickets.free-places"/></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${flights}" var="flight">
-                            <tr  data-toggle="modal"
-                                 data-target="#ModalSeat" class="cursor">
-                                <th scope="row">${flight.trainName}</th>
-                                <td>${flight.arrivalStation} / ${flight.departureStation}
-                                </td>
-                                <td>${flight.arrivalTime} / ${flight.departureTime}</td>
-                                <td>${flight.freeSeatNumber}</td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
+                <c:choose>
+                    <c:when test="${not empty requestScope.flights}">
+                        <div class="container">
+                            <table class="table table-hover">
+                                <thead>
+                                <th scope="col">#<fmt:message key="tickets.train"/></th>
+                                <th scope="col"><fmt:message key="tickets.from-where-to-where"/></th>
+                                <th scope="col"><fmt:message key="tickets.date"/></th>
+                                <th scope="col"><fmt:message key="tickets.free-places"/></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${requestScope.flights}" var="flight">
+                                    <tr id="flight_row" onclick="openSeatModal(${flight.id})" class="cursor">
+                                        <th scope="row">${flight.trainName}</th>
+                                        <td>${flight.arrivalStation} / ${flight.departureStation}
+                                        </td>
+                                        <td>${flight.arrivalTime} / ${flight.departureTime}</td>
+                                        <td>${flight.freeSeatNumber}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </c:when>
+                </c:choose>
             </div>
         </div>
     </section>
@@ -123,37 +130,35 @@
                 <h5 class="card-title text-center"><fmt:message key="tickets.modal.ticket-order"/></h5>
                 <form class="form-seat">
 
+
                     <div class="form-group">
                         <label for="wagon"><fmt:message key="tickets.modal.choose-car"/></label>
-                        <select class="col selectpicker  border rounded" id="wagon" data-live-search="true">
-                            <option>Место1</option>
-                            <option>Место2</option>
-                            <option>Место3</option>
+                        <select class="col custom-select custom-select-sm" id="wagon"
+                                onchange="selectWagon(this.options[this.selectedIndex].value)">
                         </select>
+
                     </div>
 
                     <div class="form-group">
                         <label for="seat"><fmt:message key="tickets.modal.choose-seat"/></label>
-                        <select class="col selectpicker  border rounded" id="seat" data-live-search="true">
-                            <option>Место1</option>
-                            <option>Место2</option>
-                            <option>Место3</option>
+                        <select class="col custom-select custom-select-sm" id="seat" readonly>
+                            <option selected>Select wagon!</option>
                         </select>
                     </div>
-                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"><fmt:message key="tickets.modal.order"/></button>
+                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"><fmt:message
+                            key="tickets.modal.order"/></button>
                     <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
-                        <fmt:message key="tickets.modal.сancel"/></a>
+                        <fmt:message key="tickets.modal.cancel"/></a>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-</div>
-<%@ include file="../blocks/toast.jsp" %>
 <%@ include file="../blocks/registration-modal.jsp" %>
 <%@ include file="../blocks/login-modal.jsp" %>
 <%@ include file="../blocks/scripts.jsp" %>
-</body >
+</body>
 </html>
+

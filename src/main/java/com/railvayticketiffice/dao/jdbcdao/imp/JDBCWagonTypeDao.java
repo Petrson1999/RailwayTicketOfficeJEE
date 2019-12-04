@@ -2,14 +2,18 @@ package com.railvayticketiffice.dao.jdbcdao.imp;
 
 import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
+import com.railvayticketiffice.dao.jdbcdao.interfaces.WagonTypeDao;
 import com.railvayticketiffice.entity.WagonType;
 import com.railvayticketiffice.exeptions.PersistException;
+import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class JDBCWagonTypeDao extends AbstractJDBCDao<WagonType, Integer> {
+public class JDBCWagonTypeDao extends AbstractJDBCDao<WagonType, Integer> implements WagonTypeDao {
 
     private static final Logger LOG = Logger.getLogger(JDBCFlightDao.class);
 
@@ -99,5 +103,26 @@ public class JDBCWagonTypeDao extends AbstractJDBCDao<WagonType, Integer> {
                 resultSet.getInt(COLUMN_COMFORT),
                 resultSet.getString(COLUMN_NAME)
         );
+    }
+
+    @Override
+    public String getTypeNameById(int wagonId) throws PersistException{
+        final String sql = SqlConstants.SELECT + " " + COLUMN_NAME + " " + SqlConstants.FROM + " " + TABLE_WAGON_TYPES +
+                " " + SqlConstants.WHERE + " " + COLUMN_ID + "= ?";
+        String typeName = null;
+
+        try (Connection connection = DataSourceFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, wagonId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                typeName = rs.getString(COLUMN_NAME);
+            }
+        } catch (SQLException e) {
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
+        return typeName;
     }
 }

@@ -1,5 +1,5 @@
 function toastMesseg(type, message) {
-    if(type === true){
+    if (type === true) {
         document.getElementById("successTost").innerHTML = '<div class="toast shadow-lg mb-2" id=\'toastSuccess\'>\n' +
             '                    <div class="toast-header bg-success p-2">\n' +
             '                        <strong class="mr-auto text-light" >Успешно!\n' +
@@ -19,8 +19,7 @@ function toastMesseg(type, message) {
 
         document.getElementById("success").innerHTML = message;
         $('.toast').toast('show');
-    }
-    else {
+    } else {
         document.getElementById("errorToast").innerHTML = '<div class="toast shadow-lg mb-2" id=\'toastError\'>\n' +
             '                    <div class="toast-header bg-danger p-2">\n' +
             '                        <strong class="mr-auto text-light" >Ошибка!\n' +

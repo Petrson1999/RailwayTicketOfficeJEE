@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $('#form-sign-in').on("submit", function (e) {
         e.preventDefault();
-        var login = $('#login').val();
-        var password = $('#password').val();
+        let login = $('#login').val();
+        let password = $('#password').val();
 
         $.ajax({
             type: "POST",

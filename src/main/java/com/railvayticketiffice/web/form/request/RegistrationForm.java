@@ -1,4 +1,4 @@
-package com.railvayticketiffice.web.form;
+package com.railvayticketiffice.web.form.request;
 
 import com.railvayticketiffice.enums.Role;
 

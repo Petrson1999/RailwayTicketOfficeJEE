@@ -5,7 +5,7 @@ import com.railvayticketiffice.factory.DaoFactory;
 import com.railvayticketiffice.entity.User;
 import com.railvayticketiffice.enums.DaoType;
 import com.railvayticketiffice.exeptions.PersistException;
-import com.railvayticketiffice.web.form.RegistrationForm;
+import com.railvayticketiffice.web.form.request.RegistrationForm;
 import org.apache.log4j.Logger;
 
 import java.util.List;

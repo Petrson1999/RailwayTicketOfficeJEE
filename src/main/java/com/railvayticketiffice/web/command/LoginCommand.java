@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import static com.railvayticketiffice.constant.PageUrlConstants.PROFILE_PAGE;
 
-public class LoginCommand extends MultipleMethodCommand implements Command {
+public class LoginCommand extends MultipleMethodCommand {
     private static final Logger LOG = Logger.getLogger(LoginCommand.class);
 
 

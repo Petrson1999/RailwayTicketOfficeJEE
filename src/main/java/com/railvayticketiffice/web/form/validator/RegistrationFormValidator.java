@@ -1,23 +1,24 @@
 package com.railvayticketiffice.web.form.validator;
 
 
-import com.railvayticketiffice.web.form.RegistrationForm;
+import com.railvayticketiffice.web.form.request.RegistrationForm;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistrationFormValidator {
+public class RegistrationFormValidator implements FormValidator<RegistrationForm>{
 
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@" +
                     "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    public static boolean validate(RegistrationForm form) {
-        return validatePassword(form)
-                && validateLogin(form);
+    @Override
+    public boolean validate(RegistrationForm form) {
+        return this.validatePassword(form)
+                && this.validateLogin(form);
     }
 
-    private static boolean validatePassword(RegistrationForm form) {
+    private boolean validatePassword(RegistrationForm form) {
         String password = form.getPassword();
         String passwordConfirm = form.getPasswordConfirm();
 
@@ -25,13 +26,13 @@ public class RegistrationFormValidator {
                 && password.equals(passwordConfirm) && (password.length() >= 6);
     }
 
-    private static boolean validateLogin(RegistrationForm form) {
+    private boolean validateLogin(RegistrationForm form) {
         String login = form.getLogin();
-        return login != null && (login.length() > 6) && validateEmail(login);
+        return login != null && (login.length() > 6) && this.validateEmail(login);
     }
 
 
-    private static boolean validateEmail(final String email) {
+    private boolean validateEmail(final String email) {
         Pattern pattern;
         Matcher matcher;
         pattern = Pattern.compile(EMAIL_PATTERN);

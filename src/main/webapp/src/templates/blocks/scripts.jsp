@@ -1,11 +1,3 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>scripts</title>
-</head>
-<body>
-
 <!--jquery-->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 
@@ -38,10 +30,10 @@
 <!--own scripts-->
 <script src="built/js/main.js"></script>
 <script src="built/js/toast.js"></script>
+<script src="built/js/tickets-page.js"></script>
 
 <!--ajax-->
 <script src="built/js/ajax/login.js"></script>
 <script src="built/js/ajax/registration.js"></script>
-
-</body>
-</html>
+<script src="built/js/ajax/flight-seats.js"></script>
+<script src="built/js/ajax/flight-search.js"></script>
