@@ -32,13 +32,12 @@ public class FlightsCommand extends MultipleMethodCommand {
 
     @Override
     protected Page performGet(HttpServletRequest request) {
+        FlightSearchForm flightSearchForm =  getFlightSearchForm(request);
         List<FlightDto> flightDtos = flightService.getAllDto();
-        AjaxResponse ajaxResponse = new AjaxResponse();
         if (flightDtos != null) {
             request.setAttribute(FLIGHTS_ATTRIBUTE, flightDtos);
             return new Page(TICKETS_PAGE);
         }
-        ajaxResponse.setMessage("No flights on a given path.");
         return new Page(TICKETS_PAGE);
     }
 
@@ -52,17 +51,19 @@ public class FlightsCommand extends MultipleMethodCommand {
         final Date date;
         Date d = null;
         try {
-            d = format.parse(request.getParameter("date") + request.getParameter("time"));
+            d = format.parse(request.getParameter("date"));
         } catch (ParseException e) {
             LOG.error("error parse date");
         } finally {
             date = d;
         }
-
         return mapForm(request,
                 req -> new FlightSearchForm(
                         Integer.parseInt(request.getParameter("departureStationId")),
                         Integer.parseInt(request.getParameter("arrivalStationId")),
                         date));
     }
+
+
+
 }

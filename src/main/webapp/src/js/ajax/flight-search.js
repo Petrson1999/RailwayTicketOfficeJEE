@@ -42,7 +42,7 @@ $(document).ready(function () {
         if (time.indexOf('PM') !== -1) {
             hours = hours + 12;
         }
-        return date + "T" + hours + time.substring(2 , 5);
+        return date + " " + hours + time.substring(2 , 5);
     }
 
 });
