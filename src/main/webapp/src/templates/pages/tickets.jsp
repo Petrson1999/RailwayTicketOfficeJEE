@@ -105,9 +105,9 @@
                                 <c:forEach items="${requestScope.flights}" var="flight">
                                     <tr id="flight_row" onclick="openSeatModal(${flight.id})" class="cursor">
                                         <th scope="row">${flight.trainName}</th>
-                                        <td>${flight.arrivalStation} / ${flight.departureStation}
+                                        <td>${flight.departureStation} / ${flight.arrivalStation}
                                         </td>
-                                        <td>${flight.arrivalTime} / ${flight.departureTime}</td>
+                                        <td>${flight.departureTime} / ${flight.arrivalTime}</td>
                                         <td>${flight.freeSeatNumber}</td>
                                     </tr>
                                 </c:forEach>
@@ -115,7 +115,17 @@
                             </table>
                         </div>
                     </c:when>
+                    <c:when test="${not empty requestScope.message}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col" style="text-align: center">
+                                    Рейсов по заданному пути не найдено!
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
                 </c:choose>
+
             </div>
         </div>
     </section>

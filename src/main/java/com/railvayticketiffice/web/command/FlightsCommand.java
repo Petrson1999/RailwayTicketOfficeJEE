@@ -1,19 +1,18 @@
 package com.railvayticketiffice.web.command;
 
-import com.google.gson.Gson;
 import com.railvayticketiffice.dto.FlightDto;
 import com.railvayticketiffice.factory.ServiceFactory;
 import com.railvayticketiffice.services.FlightService;
-import com.railvayticketiffice.web.data.AjaxResponse;
 import com.railvayticketiffice.web.data.Page;
 import com.railvayticketiffice.web.form.request.FlightSearchForm;
+import com.railvayticketiffice.web.form.validator.FlightSearchFormValidator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.railvayticketiffice.constant.PageUrlConstants.TICKETS_PAGE;
@@ -32,12 +31,23 @@ public class FlightsCommand extends MultipleMethodCommand {
 
     @Override
     protected Page performGet(HttpServletRequest request) {
-        FlightSearchForm flightSearchForm =  getFlightSearchForm(request);
-        List<FlightDto> flightDtos = flightService.getAllDto();
-        if (flightDtos != null) {
+
+
+        FlightSearchForm flightSearchForm = getFlightSearchForm(request);
+
+        if (isFlightSearchFormNotValid(flightSearchForm)) {
+            LOG.info("flight search form is invalid");
+            return new Page(TICKETS_PAGE);
+        }
+
+
+        List<FlightDto> flightDtos = flightService.getFlightsBySearch(flightSearchForm);
+        if (flightDtos != null && flightDtos.size() != 0) {
             request.setAttribute(FLIGHTS_ATTRIBUTE, flightDtos);
             return new Page(TICKETS_PAGE);
         }
+
+        request.setAttribute("message", "nonFlight");
         return new Page(TICKETS_PAGE);
     }
 
@@ -47,23 +57,18 @@ public class FlightsCommand extends MultipleMethodCommand {
     }
 
     private FlightSearchForm getFlightSearchForm(HttpServletRequest request) {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-        final Date date;
-        Date d = null;
-        try {
-            d = format.parse(request.getParameter("date"));
-        } catch (ParseException e) {
-            LOG.error("error parse date");
-        } finally {
-            date = d;
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy'T'HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("date"), formatter);
         return mapForm(request,
                 req -> new FlightSearchForm(
                         Integer.parseInt(request.getParameter("departureStationId")),
                         Integer.parseInt(request.getParameter("arrivalStationId")),
-                        date));
+                        dateTime));
     }
 
+    private boolean isFlightSearchFormNotValid(FlightSearchForm registrationForm) {
+        return !validateForm(registrationForm, new FlightSearchFormValidator());
+    }
 
 
 }

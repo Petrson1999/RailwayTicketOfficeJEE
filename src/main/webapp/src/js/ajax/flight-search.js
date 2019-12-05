@@ -16,7 +16,7 @@ $(document).ready(function () {
             "flights?" +
             "departureStationId=" + departureStationId + "&" +
             "arrivalStationId=" + arrivalStationId + "&" +
-            "date=" + getDate(date,time)
+            "date=" + getDate(date, time)
         )
     });
 
@@ -34,15 +34,41 @@ $(document).ready(function () {
             toastMesseg(false, 'поле ВРЕМЯ не может быть пустым');
             valid = false;
         }
+
+        let today = new Date();
+        let selectedDate = new Date();
+        selectedDate.setFullYear(Number(date.substring(6, 10)));
+        selectedDate.setMonth(Number(date.substring(3, 5)) - 1);
+        selectedDate.setDate(Number(date.substring(0, 2)));
+        selectedDate.setHours(Number(getTime(time).substring(0, 2)));
+        selectedDate.setMinutes(Number(getTime(time).substring(3, 5)));
+
+        if (
+            selectedDate.valueOf() < today.valueOf()
+        ) {
+            toastMesseg(false, 'выбранная дата уже прошла');
+            valid = false;
+        }
         return valid;
     }
 
     function getDate(date, time) {
-        let hours = Number(time.substring(0 , 2));
+        let hours = Number(time.substring(0, time.length - 6));
         if (time.indexOf('PM') !== -1) {
             hours = hours + 12;
         }
-        return date + " " + hours + time.substring(2 , 5);
+        return date + "T" + hours + time.substring(time.length - 6, 5);
+    }
+
+    function getTime(time) {
+        let hours = Number(time.substring(0, time.length - 6));
+        if (time.indexOf('PM') !== -1) {
+            hours = hours + 12;
+        }
+        if(hours < 10){
+            hours = "0" + hours;
+        }
+        return hours + time.substring(time.length - 6, 5);
     }
 
 });

@@ -12,12 +12,11 @@ import com.railvayticketiffice.enums.DaoType;
 import com.railvayticketiffice.exeptions.PersistException;
 import com.railvayticketiffice.factory.DaoFactory;
 import com.railvayticketiffice.factory.ServiceFactory;
+import com.railvayticketiffice.web.form.request.FlightSearchForm;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FlightService {
     private static final Logger LOG = Logger.getLogger(FlightService.class);
@@ -57,16 +56,20 @@ public class FlightService {
 
         List<FlightDto> flightDtos = new ArrayList<>();
         for (Flight flight : flights) {
-            FlightDto flightDto = new FlightDto();
-            flightDto.setId(flight.getId());
-            flightDto.setName(flight.getName());
-            flightDto.setCost(flight.getCost());
-            flightDto.setDepartureStation(stationService.getStationName(flight.getDepartureStationId()));
-            flightDto.setArrivalStation(stationService.getStationName(flight.getArrivalStationId()));
-            flightDto.setDepartureTime(flight.getDepartureTime());
-            flightDto.setArrivalTime(flight.getArrivalTime());
-            flightDto.setTrainName(trainService.getTrainName(flight.getTrainId()));
-            flightDto.setFreeSeatNumber(getAllFreeSeatsNumber(flight.getId()));
+            FlightDto flightDto = new FlightDto(
+                    flight.getId(),
+                    flight.getDepartureStationId(),
+                    flight.getArrivalStationId(),
+                    flight.getDepartureTime(),
+                    flight.getArrivalTime(),
+                    flight.getCost(),
+                    flight.getName(),
+                    flight.getTrainId(),
+                    stationService.getStationName(flight.getDepartureStationId()),
+                    stationService.getStationName(flight.getArrivalStationId()),
+                    trainService.getTrainName(flight.getTrainId()),
+                    getAllFreeSeatsNumber(flight.getId())
+            );
             flightDtos.add(flightDto);
         }
         return flightDtos;
@@ -138,8 +141,6 @@ public class FlightService {
         return flight;
     }
 
-
-
     public List<WagonDto> getFlightWagonDto(int flightId) {
         List<WagonDto> wagonDtos = new ArrayList<>();
 
@@ -163,12 +164,36 @@ public class FlightService {
                 wagonFreeSeats = getFreeSeatsInWagon(tickets, wagonAllSeats);
             }
             if (wagonFreeSeats != null) {
-                wagonDtos.add(new WagonDto(wagon , wagonService.getWagonType(wagon.getWagonTypeId()), wagonFreeSeats));
+                wagonDtos.add(new WagonDto(wagon, wagonService.getWagonType(wagon.getWagonTypeId()), wagonFreeSeats));
             }
         }
 
         return wagonDtos;
 
     }
+
+    public List<FlightDto> getFlightsBySearch(FlightSearchForm flightSearchForm) {
+        List<FlightDto> flightDtos = getAllDto();
+        if (flightDtos == null) {
+            return null;
+        }
+        flightDtos = flightDtos.stream().filter(x -> x.getDepartureStationId() == flightSearchForm.getDepartureStationId()
+                && x.getArrivalStationId() == flightSearchForm.getArrivalStationId()).collect(Collectors.toList());
+
+
+
+        flightDtos = flightDtos.stream().filter(x ->
+                x.getDepartureTime().getYear() == flightSearchForm.getDateTime().getYear() &&
+                x.getDepartureTime().getMonth() == flightSearchForm.getDateTime().getMonth() &&
+                x.getDepartureTime().getDayOfMonth() == flightSearchForm.getDateTime().getDayOfMonth() &&
+                x.getDepartureTime().getHour() >= flightSearchForm.getDateTime().getHour() &&
+                x.getDepartureTime().getMinute() >= flightSearchForm.getDateTime().getMinute()
+                ).collect(Collectors.toList());
+
+        return flightDtos;
+    }
+
+
+
 }
 

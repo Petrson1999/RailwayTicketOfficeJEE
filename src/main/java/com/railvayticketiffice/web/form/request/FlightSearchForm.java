@@ -1,6 +1,6 @@
 package com.railvayticketiffice.web.form.request;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class FlightSearchForm {
 
@@ -8,15 +8,15 @@ public class FlightSearchForm {
 
     private int arrivalStationId;
 
-    private Date dateTime;
+    private LocalDateTime dateTime;
 
-    public FlightSearchForm(int departureStationId, int arrivalStationId , Date dateTime){
+    public FlightSearchForm(int departureStationId, int arrivalStationId , LocalDateTime dateTime){
         this.departureStationId = departureStationId;
         this.arrivalStationId = arrivalStationId;
         this.dateTime = dateTime;
     }
 
-    public Date getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
@@ -32,7 +32,7 @@ public class FlightSearchForm {
         this.arrivalStationId = arrivalStationId;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

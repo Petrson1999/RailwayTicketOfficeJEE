@@ -81,8 +81,8 @@ public class JDBCFlightDao extends AbstractJDBCDao<Flight, Integer> {
         try {
             statement.setInt(1, object.getDepartureStationId());
             statement.setInt(2, object.getArrivalStationId());
-            statement.setDate(3, (java.sql.Date) object.getDepartureTime());
-            statement.setDate(4, (java.sql.Date) object.getArrivalTime());
+            statement.setDate(3, java.sql.Date.valueOf( object.getDepartureTime().toLocalDate()));
+            statement.setDate(4,  java.sql.Date.valueOf(object.getArrivalTime().toLocalDate()));
             statement.setDouble(5, object.getCost());
             statement.setString(6, object.getName());
             statement.setInt(7, object.getTrainId());
@@ -107,12 +107,12 @@ public class JDBCFlightDao extends AbstractJDBCDao<Flight, Integer> {
                 statement.setNull(2, Types.INTEGER);
             }
             if (object.getDepartureTime() != null) {
-                statement.setDate(3, (java.sql.Date) object.getDepartureTime());
+                statement.setDate(3, java.sql.Date.valueOf( object.getDepartureTime().toLocalDate()));
             } else {
                 statement.setNull(3, Types.DATE);
             }
             if (object.getArrivalTime() != null) {
-                statement.setDate(4, (java.sql.Date) object.getArrivalTime());
+                statement.setDate(4, java.sql.Date.valueOf(object.getArrivalTime().toLocalDate()));
             } else {
                 statement.setNull(4, Types.DATE);
             }
@@ -145,8 +145,8 @@ public class JDBCFlightDao extends AbstractJDBCDao<Flight, Integer> {
                 resultSet.getInt(COLUMN_ID),
                 resultSet.getInt(COLUMN_DEPARTURE_STATION_ID),
                 resultSet.getInt(COLUMN_ARRIVAL_STATION_ID),
-                resultSet.getDate(COLUMN_DEPARTURE_TIME),
-                resultSet.getDate(COLUMN_ARRIVAL_TIME),
+                resultSet.getTimestamp(COLUMN_DEPARTURE_TIME).toLocalDateTime(),
+                resultSet.getTimestamp(COLUMN_ARRIVAL_TIME).toLocalDateTime(),
                 resultSet.getDouble(COLUMN_COST),
                 resultSet.getString(COLUMN_NAME),
                 resultSet.getInt(COLUMN_TRAIN_ID)

@@ -1,22 +1,32 @@
 package com.railvayticketiffice.dto;
 
-import java.util.Date;
+import com.railvayticketiffice.entity.Flight;
 
-public class FlightDto {
+import java.time.LocalDateTime;
 
-    private int id;
+public class FlightDto extends Flight {
+
+    public FlightDto(int id, int departureStationId, int arrivalStationId, LocalDateTime departureTime, LocalDateTime arrivalTime,
+                     double cost, String name, int trainId, String departureStation, String arrivalStation,
+                     String trainName, int freeSeatNumber) {
+        this.setId(id);
+        this.setDepartureStationID(departureStationId);
+        this.setArrivalStationId(arrivalStationId);
+        this.setDepartureTime(departureTime);
+        this.setArrivalTime(arrivalTime);
+        this.setCost(cost);
+        this.setName(name);
+        this.setTrain(trainId);
+        this.departureStation = departureStation;
+        this.arrivalStation = arrivalStation;
+        this.trainName = trainName;
+        this.freeSeatNumber = freeSeatNumber;
+
+    }
 
     private String departureStation;
 
     private String arrivalStation;
-
-    private Date departureTime;
-
-    private Date arrivalTime;
-
-    private double cost;
-
-    private String name;
 
     private String trainName;
 
@@ -30,26 +40,6 @@ public class FlightDto {
         this.freeSeatNumber = freeSeatNumber;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public void setArrivalTime(Date arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
     public void setArrivalStation(String arrivalStation) {
         this.arrivalStation = arrivalStation;
     }
@@ -60,26 +50,6 @@ public class FlightDto {
 
     public void setTrainName(String trainName) {
         this.trainName = trainName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public Date getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getArrivalStation() {

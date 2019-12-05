@@ -1,14 +1,14 @@
 package com.railvayticketiffice.entity;
 
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Flight implements Identified<Integer> {
 
     public Flight() {
     }
 
-    public Flight(int id, int departureStationId, int arrivalStationId, Date departureTime, Date arrivalTime,
+    public Flight(int id, int departureStationId, int arrivalStationId, LocalDateTime departureTime, LocalDateTime arrivalTime,
                   double cost, String name, int trainId) {
         this.id = id;
         this.departureStationId = departureStationId;
@@ -26,9 +26,9 @@ public class Flight implements Identified<Integer> {
 
     private int arrivalStationId;
 
-    private Date departureTime;
+    private LocalDateTime departureTime;
 
-    private Date arrivalTime;
+    private LocalDateTime arrivalTime;
 
     private double cost;
 
@@ -61,19 +61,19 @@ public class Flight implements Identified<Integer> {
         return arrivalStationId;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(LocalDateTime departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Date getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(LocalDateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public Date getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return arrivalTime;
     }
 

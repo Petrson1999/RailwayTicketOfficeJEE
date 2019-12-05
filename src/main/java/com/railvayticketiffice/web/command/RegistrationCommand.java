@@ -54,7 +54,13 @@ public class RegistrationCommand extends MultipleMethodCommand {
         if (user != null) {
             LOG.info("Redirect to home user.");
             request.getSession().setAttribute("user", user);
-            return new Page("/" + PROFILE_PAGE, true);
+
+            AjaxResponse ajaxResponse = new AjaxResponse();
+            LOG.info("Login success");
+            ajaxResponse.setSuccess(true);
+            ajaxResponse.setUrl(PROFILE_PAGE);
+            ajaxResponse.setMessage("registration success");
+            return new Page(true, gson.toJson(ajaxResponse));
         }
 
         return processError(request, "Could not create user");
@@ -62,7 +68,6 @@ public class RegistrationCommand extends MultipleMethodCommand {
 
     private Page processError(HttpServletRequest request, String s) {
         AjaxResponse ajaxResponse = new AjaxResponse();
-        LOG.info("Login success");
         ajaxResponse.setSuccess(false);
         ajaxResponse.setMessage(s);
         return new Page(true, gson.toJson(ajaxResponse));

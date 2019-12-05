@@ -22,7 +22,6 @@ $(document).ready(function () {
                 "password_confirm": password_confirm
             },
             success: function (data) {
-                console.log(data);
                 if (data.success) {
                     $(location).attr('href', data.url)
                 } else {
