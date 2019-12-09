@@ -48,7 +48,17 @@ public class FlightService {
         return flights;
     }
 
-    public List<FlightDto> getAllDto() {
+    public Flight getByPK(int flightId){
+        Flight flight = null;
+        try {
+            flight = flightDao.getByPK(flightId);
+        } catch (PersistException e) {
+            LOG.error(e);
+        }
+        return flight;
+    }
+
+    private List<FlightDto> getAllDto() {
         List<Flight> flights = getAll();
         if (flights == null) {
             return null;
@@ -76,7 +86,7 @@ public class FlightService {
 
     }
 
-    public SeatsDto getFreeSeats(int flightId) {
+    private SeatsDto getFreeSeats(int flightId) {
         Flight flight = getByPk(flightId);
 
         if (flight == null) {

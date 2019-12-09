@@ -16,8 +16,6 @@ public class DataSourceFactory {
 
     private static final Logger LOG = Logger.getLogger(DataSourceFactory.class);
 
-    private static final DataSourceFactory INSTANCE = new DataSourceFactory();
-
     private static DataSource dataSource;
 
     private DataSourceFactory() {
@@ -47,10 +45,6 @@ public class DataSourceFactory {
             LOG.error("Error while connection creation", e);
         }
         return connection;
-    }
-
-    public static PreparedStatement getPreparedStatement(String query) throws SQLException {
-        return getConnection().prepareStatement(query);
     }
 
 }

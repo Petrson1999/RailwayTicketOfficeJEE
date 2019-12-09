@@ -3,6 +3,7 @@ package com.railvayticketiffice.dto;
 import com.railvayticketiffice.entity.Flight;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FlightDto extends Flight {
 
@@ -21,6 +22,9 @@ public class FlightDto extends Flight {
         this.arrivalStation = arrivalStation;
         this.trainName = trainName;
         this.freeSeatNumber = freeSeatNumber;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.formatedDepartureTime = departureTime.format(formatter);
+        this.formatedArrivalTime = arrivalTime.format(formatter);
 
     }
 
@@ -31,6 +35,26 @@ public class FlightDto extends Flight {
     private String trainName;
 
     private int freeSeatNumber;
+
+    private String formatedDepartureTime;
+
+    private String formatedArrivalTime;
+
+    public String getformatedDepartureTime() {
+        return formatedDepartureTime;
+    }
+
+    public void setformatedDepartureTime(String formatedDate) {
+        this.formatedDepartureTime = formatedDate;
+    }
+
+    public String getFormatedArrivalTime() {
+        return formatedArrivalTime;
+    }
+
+    public void setFormatedArrivalTime(String formatedArrivalTime) {
+        this.formatedArrivalTime = formatedArrivalTime;
+    }
 
     public int getFreeSeatNumber() {
         return freeSeatNumber;

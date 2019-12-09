@@ -15,7 +15,7 @@ public class JDBCUserDao extends AbstractJDBCDao<User, Integer> {
 
     private static final Logger LOG = Logger.getLogger(JDBCUserDao.class);
 
-    private static final String TABLE_USERS = "users";
+    public static final String TABLE_USERS = "users";
 
     private static final String COLUMN_LOGIN = "login";
 
@@ -26,6 +26,8 @@ public class JDBCUserDao extends AbstractJDBCDao<User, Integer> {
     private static final String COLUMN_NAME = "name";
 
     private static final String COLUMN_SURNAME = "surname";
+
+    public static final String COLUMN_FUNDS = "funds";
 
     @Override
     public String getSelectQuery() {
@@ -129,7 +131,8 @@ public class JDBCUserDao extends AbstractJDBCDao<User, Integer> {
                 resultSet.getString(COLUMN_PASSWORD),
                 Role.valueOf(resultSet.getString(COLUMN_ROLE)),
                 resultSet.getString(COLUMN_NAME),
-                resultSet.getString(COLUMN_SURNAME)
+                resultSet.getString(COLUMN_SURNAME),
+                resultSet.getDouble(COLUMN_FUNDS)
         );
     }
 

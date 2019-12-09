@@ -4,6 +4,7 @@ import com.railvayticketiffice.constant.SqlConstants;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.EntityMapper;
 import com.railvayticketiffice.dao.jdbcdao.interfaces.TicketsDao;
 import com.railvayticketiffice.entity.Ticket;
+import com.railvayticketiffice.entity.User;
 import com.railvayticketiffice.exeptions.PersistException;
 import com.railvayticketiffice.persistance.DataSourceFactory;
 import org.apache.log4j.Logger;
@@ -13,6 +14,8 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.railvayticketiffice.constant.SqlConstants.ALL;
+import static com.railvayticketiffice.dao.jdbcdao.imp.JDBCUserDao.COLUMN_FUNDS;
+import static com.railvayticketiffice.dao.jdbcdao.imp.JDBCUserDao.TABLE_USERS;
 
 public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements TicketsDao {
 
@@ -28,8 +31,6 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements T
 
     private static final String COLUMN_SEAT_ID = "seat_id";
 
-    private static final String COLUMN_STATUS = "status";
-
     @Override
     public String getSelectQuery() {
         return SqlConstants.SELECT + " " + ALL + " " + SqlConstants.FROM + " " + TABLE_TICKETS;
@@ -42,11 +43,9 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements T
                 COLUMN_FLIGHT_ID + ", " +
                 COLUMN_USER_ID + ", " +
                 COLUMN_COST + ", " +
-                COLUMN_SEAT_ID + ", " +
-                COLUMN_STATUS +
+                COLUMN_SEAT_ID +
                 ") " +
-                SqlConstants.VALUES + " (?,?,?,?,?) " +
-                "RETURNING " + ALL;
+                SqlConstants.VALUES + " (?,?,?,?) ";
     }
 
     @Override
@@ -57,7 +56,6 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements T
                 COLUMN_USER_ID + " = ?, " +
                 COLUMN_COST + " = ?, " +
                 COLUMN_SEAT_ID + " = ?, " +
-                COLUMN_STATUS + " = ? " +
                 SqlConstants.WHERE + " " + COLUMN_ID + " = ?";
     }
 
@@ -79,7 +77,6 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements T
             statement.setInt(2, object.getUserId());
             statement.setDouble(3, object.getCost());
             statement.setInt(4, object.getSeatId());
-            statement.setString(5, object.getStatus());
         } catch (SQLException e) {
             PersistException persistException = new PersistException(e);
             LOG.error(persistException);
@@ -110,12 +107,7 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements T
             } else {
                 statement.setNull(4, Types.INTEGER);
             }
-            if (object.getStatus() != null) {
-                statement.setString(5, object.getStatus());
-            } else {
-                statement.setNull(5, Types.NVARCHAR);
-            }
-            statement.setInt(6, object.getId());
+            statement.setInt(5, object.getId());
         } catch (SQLException e) {
             PersistException persistException = new PersistException(e);
             LOG.error(persistException);
@@ -151,5 +143,48 @@ public class JDBCTicketDao extends AbstractJDBCDao<Ticket, Integer> implements T
             throw persistException;
         }
         return tickets;
+    }
+
+    @Override
+    public boolean ticketsTransaction(Ticket ticket, User user) throws PersistException {
+        if (ticket == null) {
+            return false;
+        }
+        final String addTicket = getCreateQuery();
+        final String withdrawMoney = SqlConstants.UPDATE + " " + TABLE_USERS + " " +
+                SqlConstants.SET + " " +
+                COLUMN_FUNDS + " = ? " +
+                SqlConstants.WHERE + " " + COLUMN_ID + " = ?";
+        Connection connection = DataSourceFactory.getConnection();
+        Savepoint savepointOne = null;
+        try {
+            connection.setAutoCommit(false);
+            savepointOne = connection.setSavepoint("beforePayment");
+        } catch (SQLException e) {
+            LOG.error(e);
+        }
+        try (PreparedStatement statementTicket = connection.prepareStatement(addTicket);
+             PreparedStatement statementWithdrawMoney = connection.prepareStatement(withdrawMoney)) {
+
+
+            prepareStatementForInsert(statementTicket, ticket);
+
+            statementWithdrawMoney.setDouble(1, user.getFunds() - ticket.getCost());
+            statementWithdrawMoney.setInt(2, user.getId());
+
+            statementTicket.executeUpdate();
+            statementWithdrawMoney.executeUpdate();
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                connection.rollback(savepointOne);
+            } catch (SQLException e1) {
+                LOG.error(e1);
+            }
+            PersistException persistException = new PersistException(e);
+            LOG.error(persistException);
+            throw persistException;
+        }
     }
 }

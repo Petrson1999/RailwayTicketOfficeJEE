@@ -7,13 +7,14 @@ public class User implements Identified<Integer> {
     public User() {
     }
 
-    public User(int id, String login, String password, Role role, String name, String surname) {
+    public User(int id, String login, String password, Role role, String name, String surname, double funds) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.role = role;
         this.name = name;
         this.surname = surname;
+        this.funds = funds;
     }
 
     private int id;
@@ -27,6 +28,16 @@ public class User implements Identified<Integer> {
     private String name;
 
     private String surname;
+
+    private double funds;
+
+    public double getFunds() {
+        return funds;
+    }
+
+    public void setFunds(double founds) {
+        this.funds = founds;
+    }
 
     @Override
     public Integer getId() {

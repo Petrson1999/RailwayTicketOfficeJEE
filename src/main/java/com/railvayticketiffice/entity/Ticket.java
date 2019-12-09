@@ -12,6 +12,13 @@ public class Ticket implements Identified<Integer> {
         this.seatId = seatId;
     }
 
+    public Ticket( int flightId, int userId, double cost, int seatId){
+        this.flightId = flightId;
+        this.userId = userId;
+        this.cost = cost;
+        this.seatId = seatId;
+    }
+
     private int id;
 
     private int flightId;
@@ -21,8 +28,6 @@ public class Ticket implements Identified<Integer> {
     private double cost;
 
     private int seatId;
-
-    private String status;
 
     @Override
     public Integer getId() {
@@ -63,13 +68,5 @@ public class Ticket implements Identified<Integer> {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

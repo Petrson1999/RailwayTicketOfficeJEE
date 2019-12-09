@@ -53,6 +53,16 @@ public class UserService {
         return users;
     }
 
+    public User getByPK(int userId){
+        User user = null;
+        try {
+            user = userDao.getByPK(userId);
+        } catch (PersistException e) {
+            LOG.error(e);
+        }
+        return user;
+    }
+
     public User registerUser(RegistrationForm registrationForm) {
         User user = new User();
         user.setLogin(registrationForm.getLogin());
