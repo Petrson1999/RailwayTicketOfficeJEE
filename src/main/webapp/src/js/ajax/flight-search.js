@@ -57,6 +57,9 @@ $(document).ready(function () {
         if (time.indexOf('PM') !== -1) {
             hours = hours + 12;
         }
+        if(hours < 10){
+            hours = "0" + hours;
+        }
         return date + "T" + hours + time.substring(time.length - 6, 5);
     }
 
@@ -68,7 +71,7 @@ $(document).ready(function () {
         if(hours < 10){
             hours = "0" + hours;
         }
-        return hours + time.substring(time.length - 6, 5);
+        return hours + time.substring(time.length - 6, time.length);
     }
 
 });

@@ -73,6 +73,7 @@
                                     </div>
                                     <div class="col"></div>
                                     <div class="w-100 "></div>
+                                    <div class="w-100 "></div>
                                     <div class="col"></div>
                                     <div class="col"></div>
                                     <div class="col"></div>
@@ -103,11 +104,13 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${requestScope.flights}" var="flight">
-                                    <tr id="flight_row" onclick="openSeatModal(${flight.id})" class="cursor">
+                                    <tr id="flight_row"
+                                        onclick="openSeatModal(${flight.id},'${flight.departureStation.toString()}'+' / '+'${flight.arrivalStation.toString()}','${flight.formatedDepartureTime.toString()}'+' / '+'${flight.formatedArrivalTime.toString()}')"
+                                        class="cursor">
                                         <th scope="row">${flight.trainName}</th>
                                         <td>${flight.departureStation} / ${flight.arrivalStation}
                                         </td>
-                                        <td>${flight.departureTime} / ${flight.arrivalTime}</td>
+                                        <td>${flight.formatedDepartureTime} / ${flight.formatedArrivalTime}</td>
                                         <td>${flight.freeSeatNumber}</td>
                                     </tr>
                                 </c:forEach>
@@ -119,7 +122,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col" style="text-align: center">
-                                    Рейсов по заданному пути не найдено!
+                                    <fmt:message key="tickets.flights-hot-found"/>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +141,9 @@
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
                 <h5 class="card-title text-center"><fmt:message key="tickets.modal.ticket-order"/></h5>
-                <form class="form-seat">
+                <ul class="list-group" id="flightInfo">
+                </ul>
+                <form class="form-seat" id="ticket-order" method="post">
 
 
                     <div class="form-group">
@@ -151,16 +156,55 @@
 
                     <div class="form-group">
                         <label for="seat"><fmt:message key="tickets.modal.choose-seat"/></label>
-                        <select class="col custom-select custom-select-sm" id="seat" readonly>
+                        <select class="col custom-select custom-select-sm" id="seat">
                             <option selected>Select wagon!</option>
                         </select>
                     </div>
-                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"><fmt:message
-                            key="tickets.modal.order"/></button>
+
+                    <c:choose>
+                        <c:when test="${not empty user}">
+                            <button class="btn btn-lg btn-dark btn-block text-uppercase" type="button" data-toggle="modal" data-dismiss="modal"
+                                    aria-label="Close" onclick="order()"><fmt:message
+                                    key="tickets.modal.order"/></button>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col" style="text-align: center; color: red;">
+                                        <fmt:message key="tickets.modal.login"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
+
                     <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
                         <fmt:message key="tickets.modal.cancel"/></a>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm the order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group" id="orderInfo">
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitOrder()">To order</button>
             </div>
         </div>
     </div>

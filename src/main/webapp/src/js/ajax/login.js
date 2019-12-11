@@ -9,7 +9,6 @@ $(document).ready(function () {
             url: "login",
             data: {"login": login, "password": password},
             success: function (data) {
-                console.log(data);
                 if (data.success) {
                     $(location).attr('href', data.url)
                 } else {

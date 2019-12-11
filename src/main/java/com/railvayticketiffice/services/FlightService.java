@@ -58,7 +58,7 @@ public class FlightService {
         return flight;
     }
 
-    private List<FlightDto> getAllDto() {
+    public List<FlightDto> getAllDto() {
         List<Flight> flights = getAll();
         if (flights == null) {
             return null;

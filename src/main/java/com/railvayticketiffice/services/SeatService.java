@@ -53,4 +53,13 @@ public class SeatService {
         return seats;
     }
 
+    public List<Seat> getAll(){
+        List<Seat> seats = null;
+        try {
+            seats = seatCrudDao.getAll();
+        } catch (PersistException e) {
+            LOG.error(e);
+        }
+        return seats;
+    }
 }

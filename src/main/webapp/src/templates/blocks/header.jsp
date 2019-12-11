@@ -22,6 +22,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link cursor" href="tickets"><fmt:message key="header.tickets"/></a>
+                </li>
                 <c:choose>
                     <c:when test="${not empty user}">
                         <li class="nav-item">
@@ -32,9 +35,6 @@
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="nav-item">
-                            <a class="nav-link cursor" href="tickets"><fmt:message key="header.tickets"/></a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
                                data-target="#ModalLogin"><fmt:message key="header.login"/></a>

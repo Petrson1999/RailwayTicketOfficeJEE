@@ -37,3 +37,4 @@
 <script src="built/js/ajax/registration.js"></script>
 <script src="built/js/ajax/flight-seats.js"></script>
 <script src="built/js/ajax/flight-search.js"></script>
+<script src="built/js/ajax/tickets-order.js"></script>

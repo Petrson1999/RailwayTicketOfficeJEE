@@ -25,13 +25,10 @@
             </ul>
             <h5 class="card-title text-center profile-card-header"><fmt:message key="profile.my-tickets"/></h5>
             <div class="container">
-                <div class="margin-right-10">
-                    <input type="checkbox" class="custom-checkbox"><fmt:message key="profile.show_past"/>
-                </div>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">#<th scope="col">#<fmt:message key="tickets.train"/></th></th>
+                        <th scope="col">#<fmt:message key="tickets.train"/></th>
                         <th scope="col"><fmt:message key="tickets.from-where-to-where"/></th>
                         <th scope="col"><fmt:message key="tickets.date"/></th>
                         <th scope="col"><fmt:message key="profile.wagon"/></th>
@@ -39,32 +36,23 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${requestScope.actual_tickets}" var="actual_ticket">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Киев /
-                            Одесса
-                        </td>
-                        <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                        <td>25</td>
-                        <td>25</td>
+                        <td>${actual_ticket.trainName}</td>
+                        <td>${actual_ticket.departureStation} / ${actual_ticket.arrivalStation}</td>
+                        <td> <span class="badge badge-success">${actual_ticket.formatedDepartureTime} / ${actual_ticket.formatedArrivalTime}</span></td>
+                        <td>${actual_ticket.wagonNumber}</td>
+                        <td>${actual_ticket.seatNumber}</td>
                     </tr>
+                    </c:forEach>
+                    <c:forEach items="${requestScope.deprecated_tickets}" var="deprecated_ticket">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Киев /
-                            Одесса
-                        </td>
-                        <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                        <td>25</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Киев /
-                            Одесса
-                        </td>
-                        <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                        <td>25</td>
-                        <td>25</td>
+                        <td>${deprecated_ticket.trainName}</td>
+                        <td>${deprecated_ticket.departureStation} / ${deprecated_ticket.arrivalStation}</td>
+                        <td> <span class="badge badge-danger">${deprecated_ticket.formatedDepartureTime} / ${deprecated_ticket.formatedArrivalTime}</span></td>
+                        <td>${deprecated_ticket.wagonNumber}</td>
+                        <td>${deprecated_ticket.seatNumber}</td>
+                    </c:forEach>
                     </tr>
                     </tbody>
                 </table>

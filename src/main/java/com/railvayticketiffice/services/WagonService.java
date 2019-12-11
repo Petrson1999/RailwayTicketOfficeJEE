@@ -48,4 +48,14 @@ public class WagonService {
         }
         return typeName;
     }
+
+    public List<Wagon> getAll(){
+        List<Wagon> wagons = null;
+        try {
+            wagons = wagonCrudDao.getAll();
+        } catch (PersistException e) {
+            LOG.error(e);
+        }
+        return wagons;
+    }
 }

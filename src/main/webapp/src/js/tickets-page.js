@@ -22,3 +22,4 @@ function setLastSearch() {
     localStorage.removeItem("date");
     localStorage.removeItem("time");
 }
+
