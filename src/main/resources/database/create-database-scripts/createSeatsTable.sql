@@ -1,6 +1,6 @@
--- Table: public.seats
+-- Table: public.SeatsCommand
 
--- DROP TABLE public.seats;
+-- DROP TABLE public.SeatsCommand;
 
 CREATE TABLE public.seats
 (

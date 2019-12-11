@@ -23,13 +23,28 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal"
-                       data-target="#ModalLogin"><fmt:message key="header.login"/></a>
+                    <a class="nav-link cursor" href="tickets"><fmt:message key="header.tickets"/></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" style="cursor: pointer" data-toggle="modal"
-                       data-target="#ModalRegistration"><fmt:message key="header.registration"/></a>
-                </li>
+                <c:choose>
+                    <c:when test="${not empty user}">
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger cursor" href="profile" ><fmt:message key="header.profole"/></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor" href="logout"><fmt:message key="header.logout"/></a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
+                               data-target="#ModalLogin"><fmt:message key="header.login"/></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger cursor" data-toggle="modal"
+                               data-target="#ModalRegistration"><fmt:message key="header.registration"/></a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>
@@ -39,13 +54,10 @@
             <fmt:message key="header.selected-language"/>
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#"><fmt:message key="header.change-language-english"/></a>
-            <form action="${pageContext.request.getSession().contextPath}/language" method="get">
-                <input type="submit" name="button1" value="Button 1" />
-                <input type="submit" name="button2" value="Button 2" />
-                <input type="submit" name="button3" value="Button 3" />
-            </form>
-            <a class="dropdown-item" href="#"><fmt:message key="header.change-language-russian"/></a>
+            <a class="dropdown-item" href="language?locale=en"><fmt:message
+                    key="header.change-language-english"/></a>
+            <a class="dropdown-item"  href="language?locale=ru"><fmt:message
+                    key="header.change-language-russian"/></a>
         </div>
     </div>
 </nav>

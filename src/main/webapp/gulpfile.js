@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     rigger = require('gulp-rigger'),
     cssmin = require('gulp-minify-css'),
     imagemin = require('gulp-imagemin'),
+    babel = require('gulp-babel'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
@@ -39,16 +40,6 @@ var path = {
     clean: './build'
 };
 
-var config = {
-    server: {
-        baseDir: "./built",
-        index: "index.jsp"
-    },
-    tunnel: true,
-    host: 'localhost',
-    port: 9000,
-    logPrefix: "Frontend_Devil"
-};
 
 
 gulp.task('html:build', function () {
@@ -60,6 +51,9 @@ gulp.task('html:build', function () {
 
 gulp.task('js:build', function () {
     gulp.src(path.src.js)
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
         .pipe(rigger())
         .pipe(sourcemaps.init())
         .pipe(uglify())
@@ -120,10 +114,6 @@ gulp.task('watch', function () {
     watch([path.watch.fonts], function (event, cb) {
         gulp.start('fonts:build');
     });
-});
-
-gulp.task('webserver', function () {
-    browserSync(config);
 });
 
 gulp.task('clean', function (cb) {
