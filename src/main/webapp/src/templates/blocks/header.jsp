@@ -33,6 +33,11 @@
                         <li class="nav-item">
                             <a class="nav-link cursor" href="logout"><fmt:message key="header.logout"/></a>
                         </li>
+                        <c:if test="${user.role eq 'ADMIN'}">
+                            <li class="nav-item">
+                                <a class="nav-link cursor" href="admin-flights"><fmt:message key="admin"/></a>
+                            </li>
+                        </c:if>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">

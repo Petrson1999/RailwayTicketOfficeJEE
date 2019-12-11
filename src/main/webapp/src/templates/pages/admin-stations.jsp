@@ -8,7 +8,7 @@
     <base href="${pageContext.request.contextPath}/">
     <%@include file="../blocks/head.jsp"%>
 </head>
-<body>
+<body class="body">
 <%@ include file="../blocks/header.jsp" %>
 <div class="background-image"></div>
 
@@ -27,11 +27,11 @@
                     <!-- Sidebar -->
                     <ul class="sidebar navbar-nav rounded-left ">
                         <li class="nav-item">
-                            <a class="nav-link" href="flights">
+                            <a class="nav-link" href="admin-flights">
                                 <span>Рейсы</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="stations">
+                            <a class="nav-link" href="admin-stations">
                                 <span>Станции</span></a>
                         </li>
                         <li class="nav-item ">
