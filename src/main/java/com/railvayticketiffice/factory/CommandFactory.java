@@ -18,7 +18,7 @@ public class CommandFactory {
         getCommandMap.put("/profile", new ProfilePageCommand());
         getCommandMap.put("/tickets", new TicketsPageCommand());
         getCommandMap.put("/admin-flights", new AdminFlightsPageCommand());
-        getCommandMap.put("/admin-stations", new AdminFlightsPageCommand());
+        getCommandMap.put("/admin-stations", new AdminStationsPageComand());
 
         getCommandMap.put("/logout", new LogoutCommand());
         getCommandMap.put("/language", new LanguageCommand());

@@ -9,7 +9,7 @@
     <base href="${pageContext.request.contextPath}/">
     <%@include file="../blocks/head.jsp" %>
 </head>
-<body>
+<body class="body">
 <%@ include file="../blocks/header.jsp" %>
 <div class="background-image"></div>
 
@@ -28,11 +28,11 @@
                     <!-- Sidebar -->
                     <ul class="sidebar navbar-nav rounded-left ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="flights">
+                            <a class="nav-link" href="admin-flights">
                                 <span><fmt:message key="admin.flights"/></span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="stations">
+                            <a class="nav-link" href="admin-stations">
                                 <span><fmt:message key="admin.stations"/></span></a>
                         </li>
                         <li class="nav-item ">
@@ -186,7 +186,7 @@
                     <a class="d-block text-center mt-2 small" style="cursor: pointer; margin-top: 5%"
                        data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
-                        <fmt:message key="tickets.modal.сancel"/></a>
+                        <fmt:message key="tickets.modal.cancel"/></a>
                 </form>
             </div>
         </div>
