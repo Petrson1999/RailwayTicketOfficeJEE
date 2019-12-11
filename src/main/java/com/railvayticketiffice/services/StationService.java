@@ -7,6 +7,7 @@ import com.railvayticketiffice.entity.Station;
 import com.railvayticketiffice.enums.DaoType;
 import com.railvayticketiffice.exeptions.PersistException;
 import com.railvayticketiffice.factory.DaoFactory;
+import com.railvayticketiffice.web.form.request.AddStationForm;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -42,6 +43,17 @@ public class StationService {
             LOG.error(e);
         }
         return name;
+    }
+
+    public boolean addStation(AddStationForm addStationForm){
+        Station station = new Station(addStationForm.getStationName());
+        try {
+            this.stationCrudDao.persist(station);
+            return true;
+        } catch (PersistException e) {
+            LOG.error(e);
+            return false;
+        }
     }
 
 

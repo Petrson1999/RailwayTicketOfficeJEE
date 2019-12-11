@@ -31,6 +31,7 @@ public class CommandFactory {
         postCommandMap.put("/registration", new RegistrationCommand());
         postCommandMap.put("/flights", new FlightsCommand());
         postCommandMap.put("/order", new OrderCommand());
+        postCommandMap.put("/stations", new StationCommand());
 
 
     }

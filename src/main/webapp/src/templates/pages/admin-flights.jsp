@@ -60,27 +60,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Киев /
-                                        Одесса
-                                    </td>
-                                    <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Киев /
-                                        Одесса
-                                    </td>
-                                    <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Киев /
-                                        Одесса
-                                    </td>
-                                    <td>20-11-2019 12:00 / 20-11-2019 20:00</td>
-                                </tr>
+                                <c:forEach items="${requestScope.flights}" var="flight">
+                                    <tr id="flight_row"
+                                        onclick="openSeatModal(${flight.id},'${flight.departureStation.toString()}'+' / '+'${flight.arrivalStation.toString()}','${flight.formatedDepartureTime.toString()}'+' / '+'${flight.formatedArrivalTime.toString()}')"
+                                        class="cursor">
+                                        <th scope="row">${flight.trainName}</th>
+                                        <td>${flight.departureStation} / ${flight.arrivalStation}
+                                        </td>
+                                        <td>${flight.formatedDepartureTime} / ${flight.formatedArrivalTime}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -100,9 +89,10 @@
     <div class="modal-dialog" role="document">
 
         <div class="card card-signin flex-row my-5 modal-content" style="min-width: 130%">
-            <div class="card-body" style=" height: 40em">
+            <div class="card-body" style=" height: 44em">
+                <%@ include file="../blocks/toast.jsp" %>
                 <h5 class="card-title text-center"><fmt:message key="admin.adding-flight"/></h5>
-                <form class="form-flight">
+                <form class="form-flight" id="add-flights">
 
                     <div class="form-group">
                         <div class="container">
@@ -112,15 +102,17 @@
                                         <div class="col"><fmt:message key="tickets.where-from"/> :</div>
                                         <div class="col"><fmt:message key="tickets.where"/> :</div>
                                         <div class="w-100" style="margin: 2%"></div>
-                                        <select class="col selectpicker border rounded" data-live-search="true">
-                                            <option class="bg-dark" style="color: white">Станция1</option>
-                                            <option class="bg-dark" style="color: white">Станция2</option>
-                                            <option class="bg-dark" style="color: white">Станция3</option>
+                                        <select class="col custom-select custom-select-sm" name="departureStationSelector"
+                                                id="departureStationSelector" style="margin-bottom: 3.5%">
+                                            <c:forEach items="${stations}" var="station">
+                                                <option value="${station.id}">${station.name}</option>
+                                            </c:forEach>
                                         </select>
-                                        <select class="col selectpicker border rounded " data-live-search="true">
-                                            <option class="bg-dark" style="color: white">Станция1</option>
-                                            <option class="bg-dark" style="color: white">Станция2</option>
-                                            <option class="bg-dark" style="color: white">Станция3</option>
+                                        <select class="col custom-select custom-select-sm" name="arrivalStationSelector"
+                                                id="arrivalStationSelector" style="margin-bottom: 3.5%">
+                                            <c:forEach items="${stations}" var="station">
+                                                <option value="${station.id}">${station.name}</option>
+                                            </c:forEach>
                                         </select>
                                         <div class="w-100 " style="margin: 2%"></div>
                                         <div class="col"><fmt:message key="admin.departure-date"/> :</div>
@@ -166,13 +158,16 @@
                                         <div class="col"><fmt:message key="tickets.train"/> :</div>
                                         <div class="w-100 " style="margin: 2%"></div>
                                         <div class=" col row" style="width: 100%">
-                                            <select class="col selectpicker border rounded" data-live-search="true">
-                                                <option class="bg-dark" style="color: white">Поезд1</option>
-                                                <option class="bg-dark" style="color: white">Поезд2</option>
-                                                <option class="bg-dark" style="color: white">Поезд3</option>
+                                            <select class="col custom-select custom-select-sm" name="trainSelector"
+                                                    id="trainSelector" >
+                                                <c:forEach items="${trains}" var="train">
+                                                    <option value="${train.id}">${train.name}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
-
+                                        <div class="w-100 "></div>
+                                        <div class="col"><fmt:message key="admin.cost"/> :</div>
+                                        <input type="number" class="form-control" placeholder="cost" id="cost">
 
                                     </div>
                                 </div>
@@ -180,10 +175,10 @@
 
                         </div>
                     </div>
-                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="margin-top: 45px">
+                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="margin-top: 20px">
                         <fmt:message key="admin.add"/>
                     </button>
-                    <a class="d-block text-center mt-2 small" style="cursor: pointer; margin-top: 5%"
+                    <a class="d-block text-center mt-2 small" style="cursor: pointer;"
                        data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
                         <fmt:message key="tickets.modal.cancel"/></a>
@@ -192,7 +187,6 @@
         </div>
     </div>
 </div>
-<%@ include file="../blocks/toast.jsp" %>
 <%@ include file="../blocks/scripts.jsp" %>
 </body>
 </html>

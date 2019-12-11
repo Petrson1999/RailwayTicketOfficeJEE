@@ -9,8 +9,19 @@ public class Flight implements Identified<Integer> {
     }
 
     public Flight(int id, int departureStationId, int arrivalStationId, LocalDateTime departureTime, LocalDateTime arrivalTime,
-                  double cost, String name, int trainId) {
+                   double cost, String name, int trainId) {
         this.id = id;
+        this.departureStationId = departureStationId;
+        this.arrivalStationId = arrivalStationId;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.cost = cost;
+        this.name = name;
+        this.trainId = trainId;
+    }
+
+    public Flight( int departureStationId, int arrivalStationId, LocalDateTime departureTime, LocalDateTime arrivalTime,
+                  double cost, String name, int trainId) {
         this.departureStationId = departureStationId;
         this.arrivalStationId = arrivalStationId;
         this.departureTime = departureTime;

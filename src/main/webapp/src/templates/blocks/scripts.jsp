@@ -38,3 +38,5 @@
 <script src="built/js/ajax/flight-seats.js"></script>
 <script src="built/js/ajax/flight-search.js"></script>
 <script src="built/js/ajax/tickets-order.js"></script>
+<script src="built/js/ajax/add-flights.js"></script>
+<script src="built/js/ajax/add-stations.js"></script>

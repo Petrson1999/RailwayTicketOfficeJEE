@@ -2,11 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="${locale}"/>
-<fmt:setBundle basename="${bundle}"/><html>
+<fmt:setBundle basename="${bundle}"/>
+<html>
 <head>
     <title>admin page</title>
     <base href="${pageContext.request.contextPath}/">
-    <%@include file="../blocks/head.jsp"%>
+    <%@include file="../blocks/head.jsp" %>
 </head>
 <body class="body">
 <%@ include file="../blocks/header.jsp" %>
@@ -18,7 +19,7 @@
         <div class="card-body" style="padding: 0">
 
             <div class="container-fluid" style="padding: 0">
-                <h5 class="card-title text-center" style="margin-top: 1%">Админимтрирование</h5>
+                <h5 class="card-title text-center" style="margin-top: 1%"><fmt:message key="admin"/></h5>
                 <hr style="margin-bottom: 0">
             </div>
             <div class="container-fluid" style="padding: 0">
@@ -28,15 +29,15 @@
                     <ul class="sidebar navbar-nav rounded-left ">
                         <li class="nav-item">
                             <a class="nav-link" href="admin-flights">
-                                <span>Рейсы</span></a>
+                                <span><fmt:message key="admin.flights"/></span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="admin-stations">
-                                <span>Станции</span></a>
+                                <span><fmt:message key="admin.stations"/></span></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="trains">
-                                <span>Поезда</span>
+                                <span><fmt:message key="admin.trains"/></span>
                             </a>
                         </li>
                     </ul>
@@ -46,33 +47,27 @@
                         <div class="container">
                             <div style="width: 20%; cursor: pointer; margin: 3% auto;">
                                 <a class="btn btn-dark btn-xl" style="color: white" data-toggle="modal"
-                                   data-target="#ModalStation">Добовить станцию</a>
+                                   data-target="#ModalStation"><fmt:message key="admin.add-station"/></a>
                             </div>
                         </div>
                         <div class="container">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Название</th>
+                                    <th scope="col"><fmt:message key="admin.name-station"/></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td scope="row">Киев</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Одесса</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Глухов</td>
-                                </tr>
+                                <c:forEach items="${stations}" var="station">
+                                    <tr>
+                                        <td>${station.name}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
 
                     </div>
-                    <!-- /.content-wrapper -->
-
                 </div>
             </div>
         </div>
@@ -86,20 +81,21 @@
 
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
-                <h5 class="card-title text-center">Заказ билета</h5>
-                <form class="form-seat">
+                <h5 class="card-title text-center"><fmt:message key="admin.add-station"/></h5>
+                <form class="form-seat" id="add-station-form">
 
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="email" id="station" class="form-control" placeholder="Название станции"
+                            <input type="text" id="station" class="form-control" placeholder="Название станции"
                                    required autofocus>
-                            <label for="station">Название станции</label>
+                            <label for="station"><fmt:message key="admin.name-station"/></label>
                         </div>
                     </div>
-                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit">Добавить</button>
+                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"><fmt:message
+                            key="admin.add"/></button>
                     <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal"
                        data-dismiss="modal" aria-label="Close">
-                        Отменить</a>
+                        <fmt:message key="tickets.modal.cancel"/></a>
                 </form>
             </div>
         </div>

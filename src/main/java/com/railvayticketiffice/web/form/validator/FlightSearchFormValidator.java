@@ -27,6 +27,9 @@ public class FlightSearchFormValidator implements FormValidator<FlightSearchForm
         if(form.getDateTime().isBefore(form.getDateTime())){
             valid = false;
         }
+        if(form.getDateTime().isBefore(now)){
+            valid = false;
+        }
         return valid;
     }
 
