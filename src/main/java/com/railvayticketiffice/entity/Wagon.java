@@ -13,6 +13,11 @@ public class Wagon extends CompoundTrains implements Identified<Integer> {
         this.name = name;
     }
 
+    public Wagon( int wagonTypeId, String name) {
+        this.wagonTypeId = wagonTypeId;
+        this.name = name;
+    }
+
     private int id;
 
     private int wagonTypeId;

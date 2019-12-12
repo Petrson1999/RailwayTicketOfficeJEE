@@ -19,6 +19,7 @@ public class DaoFactory {
         daoMap.put(DaoType.WAGON, new JDBCWagonDao());
         daoMap.put(DaoType.SEAT, new JDBCSeatDao());
         daoMap.put(DaoType.TICKET, new JDBCTicketDao());
+        daoMap.put(DaoType.WAGON_TYPE, new JDBCWagonTypeDao());
     }
 
     private DaoFactory() {

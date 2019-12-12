@@ -40,6 +40,11 @@
                                 <span><fmt:message key="admin.trains"/></span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="admin-wagons">
+                                <span><fmt:message key="admin.wagons"/></span>
+                            </a>
+                        </li>
                     </ul>
 
                     <div id="content-wrapper">

@@ -40,6 +40,11 @@
                                 <span><fmt:message key="admin.trains"/></span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="admin-wagons">
+                                <span><fmt:message key="admin.wagons"/></span>
+                            </a>
+                        </li>
                     </ul>
 
                     <div id="content-wrapper">
@@ -81,6 +86,7 @@
 
         <div class="card card-signin flex-row my-5 modal-content">
             <div class="card-body">
+                <%@ include file="../blocks/toast.jsp" %>
                 <h5 class="card-title text-center"><fmt:message key="admin.add-station"/></h5>
                 <form class="form-seat" id="add-station-form">
 
