@@ -4,14 +4,12 @@ import com.railvayticketiffice.dao.jdbcdao.interfaces.CrudGenericDao;
 import com.railvayticketiffice.dto.FlightDto;
 import com.railvayticketiffice.dto.SeatsDto;
 import com.railvayticketiffice.dto.WagonDto;
-import com.railvayticketiffice.entity.Flight;
-import com.railvayticketiffice.entity.Seat;
-import com.railvayticketiffice.entity.Ticket;
-import com.railvayticketiffice.entity.Wagon;
+import com.railvayticketiffice.entity.*;
 import com.railvayticketiffice.enums.DaoType;
 import com.railvayticketiffice.exeptions.PersistException;
 import com.railvayticketiffice.factory.DaoFactory;
 import com.railvayticketiffice.factory.ServiceFactory;
+import com.railvayticketiffice.web.form.request.AddFlightForm;
 import com.railvayticketiffice.web.form.request.FlightSearchForm;
 import org.apache.log4j.Logger;
 
@@ -48,7 +46,7 @@ public class FlightService {
         return flights;
     }
 
-    public Flight getByPK(int flightId){
+    public Flight getByPK(int flightId) {
         Flight flight = null;
         try {
             flight = flightDao.getByPK(flightId);
@@ -191,19 +189,37 @@ public class FlightService {
                 && x.getArrivalStationId() == flightSearchForm.getArrivalStationId()).collect(Collectors.toList());
 
 
-
         flightDtos = flightDtos.stream().filter(x ->
                 x.getDepartureTime().getYear() == flightSearchForm.getDateTime().getYear() &&
-                x.getDepartureTime().getMonth() == flightSearchForm.getDateTime().getMonth() &&
-                x.getDepartureTime().getDayOfMonth() == flightSearchForm.getDateTime().getDayOfMonth() &&
-                x.getDepartureTime().getHour() >= flightSearchForm.getDateTime().getHour() &&
-                x.getDepartureTime().getMinute() >= flightSearchForm.getDateTime().getMinute()
-                ).collect(Collectors.toList());
+                        x.getDepartureTime().getMonth() == flightSearchForm.getDateTime().getMonth() &&
+                        x.getDepartureTime().getDayOfMonth() == flightSearchForm.getDateTime().getDayOfMonth() &&
+                        x.getDepartureTime().getHour() >= flightSearchForm.getDateTime().getHour() &&
+                        x.getDepartureTime().getMinute() >= flightSearchForm.getDateTime().getMinute()
+        ).collect(Collectors.toList());
 
         return flightDtos;
     }
 
 
+    public boolean addNewFlight(AddFlightForm flightForm) {
+        if (flightForm == null) {
+            return false;
+        }
+        StationService stationService = ServiceFactory.getStationService();
+        String departureStationName = stationService.getStationName(flightForm.getDepartureStationId());
+        String arrivalStationName = stationService.getStationName(flightForm.getArrivalStationId());
+        String flightName = departureStationName + " - " + arrivalStationName;
+        Flight flight = new Flight(flightForm.getDepartureStationId(), flightForm.getArrivalStationId(),
+                flightForm.getDepartureDate(), flightForm.getArrivalDate(), flightForm.getCost(), flightName,
+                flightForm.getTrainId());
+        try {
+            flightDao.persist(flight);
+            return true;
+        } catch (PersistException e) {
+            LOG.error(e);
+            return false;
+        }
+    }
 
 }
 

@@ -53,8 +53,7 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         T persistInstance;
         String sql = getCreateQuery();
         try (Connection connection = DataSourceFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql))
-             /*   PreparedStatement statement = DataSourceFactory.getPreparedStatement(sql)) */{
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
             ResultSet rs = statement.executeQuery();
             List<T> list = parseResultSet(rs);

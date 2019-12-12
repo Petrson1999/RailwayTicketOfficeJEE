@@ -19,6 +19,8 @@ public class CommandFactory {
         getCommandMap.put("/tickets", new TicketsPageCommand());
         getCommandMap.put("/admin-flights", new AdminFlightsPageCommand());
         getCommandMap.put("/admin-stations", new AdminStationsPageComand());
+        getCommandMap.put("/admin-wagons", new AdminWagonsPageCommand());
+        getCommandMap.put("/admin-trains", new AdminTrainCommad());
 
         getCommandMap.put("/logout", new LogoutCommand());
         getCommandMap.put("/language", new LanguageCommand());
@@ -31,6 +33,10 @@ public class CommandFactory {
         postCommandMap.put("/registration", new RegistrationCommand());
         postCommandMap.put("/flights", new FlightsCommand());
         postCommandMap.put("/order", new OrderCommand());
+        postCommandMap.put("/stations", new StationCommand());
+        postCommandMap.put("/wagon_type", new WagonTypeCommand());
+        postCommandMap.put("/wagons", new WagonCommand());
+        postCommandMap.put("/trains", new TrainCommand());
 
 
     }

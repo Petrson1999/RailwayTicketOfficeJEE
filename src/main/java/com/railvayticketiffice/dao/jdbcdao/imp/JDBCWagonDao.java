@@ -42,11 +42,10 @@ public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> implements Wag
     public String getCreateQuery() {
         return SqlConstants.INSERT_INTO + " " + TABLE_WAGONS +
                 " (" +
-                COLUMN_TRAIN_ID + ", " +
                 COLUMN_TYPE_ID + ", " +
                 COLUMN_NAME +
                 ") " +
-                SqlConstants.VALUES + " (?,?,?) " +
+                SqlConstants.VALUES + " (?,?) " +
                 "RETURNING " + ALL;
     }
 
@@ -74,9 +73,8 @@ public class JDBCWagonDao extends AbstractJDBCDao<Wagon, Integer> implements Wag
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Wagon object) throws PersistException {
         try {
-            statement.setInt(1, object.getTrainId());
-            statement.setInt(2, object.getWagonTypeId());
-            statement.setString(3, object.getName());
+            statement.setInt(1, object.getWagonTypeId());
+            statement.setString(2, object.getName());
         } catch (SQLException e) {
             PersistException persistException = new PersistException(e);
             LOG.error(persistException);

@@ -31,12 +31,12 @@
                             <a class="nav-link" href="admin-flights">
                                 <span><fmt:message key="admin.flights"/></span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item ">
                             <a class="nav-link" href="admin-stations">
                                 <span><fmt:message key="admin.stations"/></span></a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="admin-trains">
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="admin-trains">
                                 <span><fmt:message key="admin.trains"/></span>
                             </a>
                         </li>
@@ -52,20 +52,20 @@
                         <div class="container">
                             <div style="width: 20%; cursor: pointer; margin: 3% auto;">
                                 <a class="btn btn-dark btn-xl" style="color: white" data-toggle="modal"
-                                   data-target="#ModalStation"><fmt:message key="admin.add-station"/></a>
+                                   data-target="#ModalTrain"><fmt:message key="admin.add-train"/></a>
                             </div>
                         </div>
                         <div class="container">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th scope="col"><fmt:message key="admin.name-station"/></th>
+                                    <th scope="col"><fmt:message key="admin.add-train-name"/></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${stations}" var="station">
+                                <c:forEach items="${trains}" var="train">
                                     <tr>
-                                        <td>${station.name}</td>
+                                        <td>${train.name}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -80,7 +80,7 @@
 
 </section>
 
-<div class="modal fade" id="ModalStation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="ModalTrain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
 
@@ -88,13 +88,13 @@
             <div class="card-body">
                 <%@ include file="../blocks/toast.jsp" %>
                 <h5 class="card-title text-center"><fmt:message key="admin.add-station"/></h5>
-                <form class="form-seat" id="add-station-form">
+                <form class="form-seat" id="add-train-form">
 
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="text" id="station" class="form-control" placeholder="Название станции"
+                            <input type="text" id="train" class="form-control" placeholder="Название станции"
                                    required autofocus>
-                            <label for="station"><fmt:message key="admin.name-station"/></label>
+                            <label for="train"><fmt:message key="admin.add-train-name"/></label>
                         </div>
                     </div>
                     <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"><fmt:message

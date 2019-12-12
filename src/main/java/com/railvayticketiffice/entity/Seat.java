@@ -11,6 +11,11 @@ public class Seat implements Identified<Integer> {
         this.placeNumber = placeNumber;
     }
 
+    public Seat( int wagonId, int placeNumber) {
+        this.wagonId = wagonId;
+        this.placeNumber = placeNumber;
+    }
+
     private int id;
 
     private int wagonId;

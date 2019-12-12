@@ -24,11 +24,6 @@
                                required>
                         <label for="password"><fmt:message key="modal-password"/></label>
                     </div>
-
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1"><fmt:message key="modal-login-remember-password"/></label>
-                    </div>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><fmt:message key="modal-login-title-upper"/></button>
                     <a class="d-block text-center mt-2 small" style="cursor: pointer" data-toggle="modal"
                        data-target="#ModalRegistration"

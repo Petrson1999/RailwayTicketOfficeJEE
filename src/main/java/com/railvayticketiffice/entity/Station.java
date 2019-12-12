@@ -10,6 +10,11 @@ public class Station implements Identified<Integer> {
         this.name = name;
     }
 
+    public Station( String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     private int id;
 
     private String name;

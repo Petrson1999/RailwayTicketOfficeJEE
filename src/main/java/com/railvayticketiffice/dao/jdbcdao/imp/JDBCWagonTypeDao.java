@@ -36,7 +36,7 @@ public class JDBCWagonTypeDao extends AbstractJDBCDao<WagonType, Integer> implem
                 " (" +
                 COLUMN_NUMBER_OF_SEATS + ", " +
                 COLUMN_COMFORT + ", " +
-                COLUMN_NAME + ", " +
+                COLUMN_NAME + " " +
                 ") " +
                 SqlConstants.VALUES + " (?,?,?) " +
                 "RETURNING " + SqlConstants.ALL;

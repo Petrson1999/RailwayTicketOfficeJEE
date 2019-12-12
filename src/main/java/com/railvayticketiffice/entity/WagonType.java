@@ -13,6 +13,12 @@ public class WagonType implements Identified<Integer> {
         this.name = name;
     }
 
+    public WagonType(String name, int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+        this.comfort = 10;
+        this.name = name;
+    }
+
     private int id;
 
     private int numberOfSeats;

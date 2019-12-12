@@ -10,6 +10,10 @@ public class Train implements Identified<Integer> {
         this.locomotiveId = locomotiveId;
     }
 
+    public Train( String name){
+        this.name = name;
+    }
+
     private int id;
 
     private String name;

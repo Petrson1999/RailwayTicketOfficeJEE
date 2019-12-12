@@ -62,4 +62,14 @@ public class SeatService {
         }
         return seats;
     }
+
+    public boolean addSeat(Seat seat){
+        try {
+            this.seatCrudDao.persist(seat);
+            return true;
+        } catch (PersistException e) {
+            LOG.error(e);
+            return false;
+        }
+    }
 }
