@@ -6,6 +6,9 @@ import com.railvayticketiffice.web.command.pages.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Factory for commands
+ */
 public class CommandFactory {
     private static Map<String, Command> getCommandMap = new HashMap<>();
     private static Map<String, Command> postCommandMap = new HashMap<>();

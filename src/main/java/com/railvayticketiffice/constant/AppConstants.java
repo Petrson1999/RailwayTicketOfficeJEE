@@ -1,5 +1,9 @@
 package com.railvayticketiffice.constant;
 
+/**
+ * Class with DB property name constants
+ * @author Vladimir Petrenko
+ */
 public class AppConstants {
 
     public static final String DB_PROPERTIES = "/database/db.properties";

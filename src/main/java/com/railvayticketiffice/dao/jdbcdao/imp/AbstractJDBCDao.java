@@ -8,6 +8,7 @@ import com.railvayticketiffice.exeptions.PersistException;
 import com.railvayticketiffice.entity.Identified;
 import org.apache.log4j.Logger;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,26 +16,66 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Abstract class for all JDBC CRUD DAO classes
+ *
+ * @author Vladimir Petrenko
+ */
 public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integer> implements CrudGenericDao<T, PK> {
+
 
     private static final Logger LOG = Logger.getLogger(AbstractJDBCDao.class);
 
+    /**
+     * const string for column "id"
+     */
     protected static final String COLUMN_ID = "id";
 
+    /**
+     * method for getting SQL string for select
+     */
     public abstract String getSelectQuery();
 
+    /**
+     * method for getting SQL string for insert
+     */
     public abstract String getCreateQuery();
 
+    /**
+     * method for getting SQL string for update
+     */
     public abstract String getUpdateQuery();
 
+    /**
+     * method for getting SQL string for delete
+     */
     public abstract String getDeleteQuery();
 
+    /**
+     * method for getting prepare statement for insert entity
+     * @param statement PreparedStatement
+     * @param object entity for insert
+     */
     protected abstract void prepareStatementForInsert(PreparedStatement statement, T object) throws PersistException;
 
+    /**
+     * method for getting prepare statement for update entity
+     * @param statement PreparedStatement
+     * @param object entity for update
+     */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws PersistException;
-
+    /**
+     * method for getting prepare entity mapper
+     * @return entity mapper for T entity
+     * @see EntityMapper
+     */
     protected abstract EntityMapper<T> getMapper();
 
+    /**
+     * method for parse result set to list entities
+     * @param resultSet result set for parse
+     * @return parsed list entities
+     */
     public List<T> parseResultSet(ResultSet resultSet) throws PersistException {
         List<T> result = new LinkedList<T>();
         try {
@@ -48,6 +89,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         return result;
     }
 
+    /**
+     * @see CrudGenericDao#persist(Identified)
+     */
     @Override
     public T persist(T object) throws PersistException {
         T persistInstance;
@@ -70,7 +114,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         }
         return persistInstance;
     }
-
+    /**
+     * @see CrudGenericDao#getByPK(Serializable)
+     */
     @Override
     public T getByPK(Integer key) throws PersistException {
         List<T> list;
@@ -99,6 +145,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         return list.iterator().next();
     }
 
+    /**
+     * @see CrudGenericDao#update(Identified)
+     */
     @Override
     public void update(T object) throws PersistException {
         String sql = getUpdateQuery();
@@ -118,6 +167,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         }
     }
 
+    /**
+     * @see CrudGenericDao#delete(Identified)
+     */
     @Override
     public void delete(T object) throws PersistException {
         String sql = getDeleteQuery();
@@ -137,6 +189,9 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         }
     }
 
+    /**
+     * @see CrudGenericDao#getAll()
+     */
     @Override
     public List<T> getAll() throws PersistException {
         List<T> list;

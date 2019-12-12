@@ -1,5 +1,9 @@
 package com.railvayticketiffice.constant;
 
+/**
+ * Class with SQL language constants
+ * @author Vladimir Petrenko
+ */
 public class SqlConstants {
 
     public static final String INSERT_INTO = "INSERT INTO";
