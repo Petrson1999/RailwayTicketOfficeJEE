@@ -12,7 +12,7 @@ How to install:
 
 1. Clone project
 2. Create DB across scripts
-3. Run gulp 
+3. Open terminal in webapp. Run command "gulp" 
 4. Deploy project
 5. Run tomcat
 
