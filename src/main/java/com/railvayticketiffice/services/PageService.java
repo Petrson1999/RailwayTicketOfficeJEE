@@ -17,6 +17,8 @@ public class PageService {
         this.pages.add("/" + PageUrlConstants.TICKETS_PAGE);
         this.pages.add("/" + PageUrlConstants.ADMIN_FLIGHTS_PAGE);
         this.pages.add("/" + PageUrlConstants.ADMIN_STATIONS_PAGE);
+        this.pages.add("/" + PageUrlConstants.ADMIN_WAGONS_PAGE);
+        this.pages.add("/" + PageUrlConstants.ADMIN_TRAINS_PAGE);
         this.pages.add("/" + PageUrlConstants.NOT_FOUND_PAGE);
         this.pages.add("/" + PageUrlConstants.FORBIDDEN_PAGE);
     }
