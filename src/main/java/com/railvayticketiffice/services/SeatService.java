@@ -39,20 +39,6 @@ public class SeatService {
         return seats;
     }
 
-    public Map<Integer , List<Integer>> getFreeSeatsIntMap(SeatsDto seatsDto){
-        Map<Integer , List<Integer>> seats = new HashMap<>();
-        for (Map.Entry<Wagon, List<Seat>> wagonSeats : seatsDto.getFreeSeats().entrySet()) {
-            List<Integer> seatsIdList = new ArrayList<>();
-            for(Seat seat :wagonSeats.getValue()){
-                seatsIdList.add(seat.getId());
-            }
-            seats.put(wagonSeats.getKey().getId() , seatsIdList);
-
-        }
-
-        return seats;
-    }
-
     public List<Seat> getAll(){
         List<Seat> seats = null;
         try {

@@ -13,7 +13,7 @@ public class AddWagonTypeFormValidator implements FormValidator<AddWagonTypeForm
     }
 
     private boolean validateName(AddWagonTypeForm form){
-        return form.getName() != null;
+        return form.getName() != null && form.getName().length() != 0;
     }
 
     private boolean validateSeatCount(AddWagonTypeForm form){

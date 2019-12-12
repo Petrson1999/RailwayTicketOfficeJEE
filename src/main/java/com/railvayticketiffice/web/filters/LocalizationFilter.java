@@ -73,6 +73,9 @@ public class LocalizationFilter implements Filter {
     }
 
     private void setPageName(HttpServletRequest httpServletRequest) {
+        if (httpServletRequest.getRequestURI() == null) {
+            return;
+        }
         String requestUri = httpServletRequest.getRequestURI();
         int lastPath = requestUri.lastIndexOf('/');
         String path = requestUri.substring(lastPath);
