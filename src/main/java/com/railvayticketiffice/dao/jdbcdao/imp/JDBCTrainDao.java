@@ -33,7 +33,7 @@ public class JDBCTrainDao extends AbstractJDBCDao<Train, Integer> implements Tra
 
     @Override
     public String getCreateQuery() {
-        return SqlConstants.INSERT_INTO + " " + TABLE_TRAINS + " (" + COLUMN_NAME + ", " + COLUMN_LOCOMOTIVE_ID + ") " + SqlConstants.VALUES + " (?,?) " +
+        return SqlConstants.INSERT_INTO + " " + TABLE_TRAINS + " (" + COLUMN_NAME  + ") " + SqlConstants.VALUES + " (?) " +
                 "RETURNING " + SqlConstants.ALL;
     }
 
@@ -58,7 +58,6 @@ public class JDBCTrainDao extends AbstractJDBCDao<Train, Integer> implements Tra
     protected void prepareStatementForInsert(PreparedStatement statement, Train object) throws PersistException {
         try {
             statement.setString(1, object.getName());
-            statement.setInt(1, object.getLocomotiveId());
         } catch (SQLException e) {
             PersistException persistException = new PersistException(e);
             LOG.error(persistException);

@@ -36,7 +36,7 @@
                                 <span><fmt:message key="admin.stations"/></span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="trains">
+                            <a class="nav-link" href="admin-trains">
                                 <span><fmt:message key="admin.trains"/></span>
                             </a>
                         </li>

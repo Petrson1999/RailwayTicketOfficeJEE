@@ -52,12 +52,12 @@ public class StationCommand extends MultipleMethodCommand {
         }
     }
 
-    private boolean isFormNotValid(AddStationForm registrationForm) {
-        return !validateForm(registrationForm , new AddStationFormValidator());
+    private boolean isFormNotValid(AddStationForm addStationForm) {
+        return !validateForm(addStationForm , new AddStationFormValidator());
     }
 
     private AddStationForm getAddStationForm(HttpServletRequest request) {
         return mapForm(request,
-                req -> new AddStationForm(request.getParameter("station_name")));
+                req -> new AddStationForm(request.getParameter("train_name")));
     }
 }

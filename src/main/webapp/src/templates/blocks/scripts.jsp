@@ -42,3 +42,4 @@
 <script src="built/js/ajax/add-stations.js"></script>
 <script src="built/js/ajax/add-wagon-type.js"></script>
 <script src="built/js/ajax/add-wagon.js"></script>
+<script src="built/js/ajax/add-train.js"></script>
