@@ -1,5 +1,8 @@
 package com.railvayticketiffice.exeptions;
 
+/**
+ * error of persistent state of the object
+ */
 public class PersistException extends Exception {
 
     public PersistException() {

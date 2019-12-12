@@ -2,6 +2,9 @@ package com.railvayticketiffice.factory;
 
 import com.railvayticketiffice.services.*;
 
+/**
+ * Factory for services
+ */
 public class ServiceFactory {
 
     public static UserService getUserService() {

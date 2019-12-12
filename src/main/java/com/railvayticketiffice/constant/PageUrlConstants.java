@@ -1,5 +1,9 @@
 package com.railvayticketiffice.constant;
 
+/**
+ * Class with JSP page link constants
+ * @author Vladimir Petrenko
+ */
 public class PageUrlConstants {
 
     public static final String LANDING_PAGE = "index";

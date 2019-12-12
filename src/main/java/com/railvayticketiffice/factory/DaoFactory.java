@@ -7,6 +7,9 @@ import com.railvayticketiffice.enums.DaoType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Factory for dao
+ */
 public class DaoFactory {
 
     private static Map<DaoType, CrudGenericDao> daoMap = new HashMap<>();
