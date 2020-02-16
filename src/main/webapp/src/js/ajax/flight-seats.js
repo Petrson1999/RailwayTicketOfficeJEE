@@ -70,7 +70,7 @@ function validateOrder( wagonId, seatId) {
         toastMesseg(false, 'выберите вагон');
         valid = false;
     }
-    if (seatId.length > 2) {
+    if (seatId.length > 10) {
         toastMesseg(false, 'выберите место');
         valid = false;
     }

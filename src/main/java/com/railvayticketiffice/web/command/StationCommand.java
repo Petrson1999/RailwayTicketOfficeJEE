@@ -58,6 +58,6 @@ public class StationCommand extends MultipleMethodCommand {
 
     private AddStationForm getAddStationForm(HttpServletRequest request) {
         return mapForm(request,
-                req -> new AddStationForm(request.getParameter("train_name")));
+                req -> new AddStationForm(request.getParameter("station_name")));
     }
 }
