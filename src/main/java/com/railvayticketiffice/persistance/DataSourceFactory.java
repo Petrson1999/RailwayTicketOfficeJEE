@@ -26,6 +26,7 @@ public class DataSourceFactory {
             properties.load(DataSourceFactory.class.getResourceAsStream(DB_PROPERTIES));
             PGPoolingDataSource pgDataSource = new PGPoolingDataSource();
             pgDataSource.setServerName(properties.getProperty(DB_HOST));
+            pgDataSource.setPortNumber(5432);
             pgDataSource.setDatabaseName(properties.getProperty(DB_NAME));
             pgDataSource.setUser(properties.getProperty(DB_USERNAME));
             pgDataSource.setPassword(properties.getProperty(DB_PASSWORD));
