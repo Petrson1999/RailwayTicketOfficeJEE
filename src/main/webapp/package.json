@@ -9,7 +9,7 @@
     "bootstrap-datetimepicker-npm": "^4.17.37-npm",
     "bootstrap-select": "^1.13.12",
     "jquery": "2.2.4",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.0",
     "jquery.easing": "^1.4.1",
     "magnific-popup": "^1.1.0",
     "moment": "^2.24.0",
