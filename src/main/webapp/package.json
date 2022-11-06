@@ -19,7 +19,7 @@
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "browser-sync": "^2.2.3",
-    "gulp": "^3.8.11",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-babel": "^8.0.0",
     "gulp-imagemin": "^2.2.1",
